@@ -1,4 +1,4 @@
-import { useRegisterForm } from "../hooks/use-register-form";
+import useRegisterForm from "../hooks/auth/use-register-form";
 
 export default function Register() {
   const {

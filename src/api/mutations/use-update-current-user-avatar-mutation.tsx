@@ -1,18 +1,19 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { fetchRegisterUser } from '../api';
+import { fetchUpdateCurrentUserAvatar } from '../api';
 import User from '../../store/types/user-interface';
 import useUserStore from '../../store/user-store';
 
-export default function useRegisterMutation() {
+export default function useUpdateCurrentUserAvatarMutation() {
   const setUser = useUserStore((state) => state.setUser);
-
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: fetchRegisterUser,
+    mutationFn: fetchUpdateCurrentUserAvatar,
     onSuccess: (data) => {
-      setUser(data as unknown as User);
-      queryClient.setQueryData(['get-current-user'], data);
+      const user: User = data.data;
+
+      setUser(user);
+      queryClient.setQueryData(['get-current-user'], user);
     },
   });
 

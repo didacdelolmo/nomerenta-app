@@ -5,17 +5,12 @@ import { useEffect } from 'react';
 import User from '../../store/types/user-interface';
 
 export default function useGetCurrentUserQuery() {
-  const {
-    data: response,
-    isPending,
-    isError,
-    error,
-    isSuccess,
-  } = useQuery({
+  const query = useQuery({
     queryKey: ['get-current-user'],
     queryFn: fetchGetCurrentUser,
   });
 
+  const { isSuccess, data: response } = query;
   const user: User = response?.data;
   const setUser = useUserStore((state) => state.setUser);
 
@@ -25,5 +20,5 @@ export default function useGetCurrentUserQuery() {
     }
   }, [isSuccess, setUser, user]);
 
-  return { isPending, isError, error, isSuccess };
+  return query;
 }

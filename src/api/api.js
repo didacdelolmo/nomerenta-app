@@ -62,7 +62,7 @@ export const fetchCurrentUserPosts = async () => {
   return axios.get('/users/me/posts', { withCredentials: true });
 };
 
-export const fetchPostsByUserId = async ({ userId }) => {
+export const fetchUserPosts = async ({ userId }) => {
   return axios.get(`/users/${userId}/posts`);
 };
 
