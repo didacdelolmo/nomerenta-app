@@ -21,7 +21,11 @@ export const fetchRegisterUser = async ({ username, password }) => {
 };
 
 export const fetchLoginUser = async ({ username, password }) => {
-  return axios.post('/login', { username, password });
+  return axios.post(
+    '/login',
+    { username, password },
+    { withCredentials: true }
+  );
 };
 
 export const fetchGetCurrentUser = async () => {
@@ -34,7 +38,8 @@ export const fetchUpdateCurrentUserAvatar = async ({ file }) => {
 
   return axios.post(
     '/users/me/avatar',
-    formData
+    formData,
+    { withCredentials: true }
     // { headers: { 'Content-Type': 'multipart/form-data', }, }
   );
 };
@@ -54,7 +59,7 @@ export const fetchPostById = async ({ postId }) => {
 };
 
 export const fetchCurrentUserPosts = async () => {
-  return axios.get('/users/me/posts');
+  return axios.get('/users/me/posts', { withCredentials: true });
 };
 
 export const fetchPostsByUserId = async ({ userId }) => {
@@ -62,7 +67,11 @@ export const fetchPostsByUserId = async ({ userId }) => {
 };
 
 export const fetchCreateCurrentUserPost = async ({ title, content }) => {
-  return axios.post('/users/me/posts', { title, content });
+  return axios.post(
+    '/users/me/posts',
+    { title, content },
+    { withCredentials: true }
+  );
 };
 
 export const fetchPostComments = ({ postId }) => {
@@ -73,5 +82,9 @@ export const fetchPostComments = ({ postId }) => {
  * * parentId is not required
  */
 export const fetchCreatePostComment = ({ postId, content, parentId }) => {
-  return axios.post(`/posts/${postId}/comments`, { postId, content, parentId });
+  return axios.post(
+    `/posts/${postId}/comments`,
+    { postId, content, parentId },
+    { withCredentials: true }
+  );
 };
