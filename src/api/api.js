@@ -46,12 +46,11 @@ export const fetchUpdateCurrentUserAvatar = async ({ file }) => {
 
 /**
  * * All the parameters are optional
- * @param {string} sortBy
- * @param {number} start
- * @param {number} limit
  */
 export const fetchPosts = async ({ sortBy, start, limit }) => {
-  return axios.get('/posts', { params: { sortBy, start, limit } });
+  return axios.get('/posts', {
+    params: { sortBy, start: parseInt(start), limit: parseInt(limit) },
+  });
 };
 
 export const fetchPostById = async ({ postId }) => {

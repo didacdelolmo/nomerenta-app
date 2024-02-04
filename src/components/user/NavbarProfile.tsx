@@ -5,7 +5,7 @@ import User from '../../store/types/user-interface';
 export default function NavbarProfile({ user }: { user: User }) {
   const { username } = user;
   const { logout } = useUser();
-  const avatar = useUserAvatarURL();
+  const avatar = useUserAvatarURL({ user });
 
   return (
     <div className="flex flex-col">

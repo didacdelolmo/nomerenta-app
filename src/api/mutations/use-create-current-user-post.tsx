@@ -13,6 +13,9 @@ export default function useCreateCurrentUserPostMutation() {
       queryClient.invalidateQueries({
         queryKey: ['get-user-posts', post.author],
       });
+      queryClient.invalidateQueries({
+        queryKey: ['get-posts'],
+      });
     },
   });
 

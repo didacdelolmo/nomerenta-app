@@ -1,7 +1,7 @@
 import useGetPostsQuery from '../../api/queries/user-get-posts-query';
-import PopularPostPreview from './PopularPostPreview';
+import RecentPostPreview from './RecentPostPreview';
 
-export default function PopularPosts() {
+export default function RecentPosts() {
   const {
     data: response,
     isPending,
@@ -11,22 +11,19 @@ export default function PopularPosts() {
   } = useGetPostsQuery({
     sortBy: 'score',
     start: 0,
-    limit: 5,
+    limit: 20,
   });
 
   return (
-    <>
+    <div className="flex flex-col gap-2">
       {isPending && <span>Cargando...</span>}
       {isError && (
         <span className="text-red-600 underline">{error.message}</span>
       )}
-      {isSuccess && (
-        <div className='flex flex-col gap-2'>
-          {response.data.map((post, index) => (
-            <PopularPostPreview key={index} post={post} />
-          ))}
-        </div>
-      )}
-    </>
+      {isSuccess &&
+        response.data.map((post, index) => (
+          <RecentPostPreview key={index} post={post} />
+        ))}
+    </div>
   );
 }

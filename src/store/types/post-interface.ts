@@ -7,7 +7,8 @@ interface Post {
   upvotes: string[] | User[];
   downvotes: string[] | User[];
   score: number;
-  comments?: Comment[] // not hierarchical
+  commentCount: number;
+  createdAt: Date;
 }
 
 export default Post;
