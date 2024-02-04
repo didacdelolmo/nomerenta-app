@@ -7,7 +7,7 @@ export default function useUpdateCurrentUserAvatarMutation() {
   const setUser = useUserStore((state) => state.setUser);
   const queryClient = useQueryClient();
 
-  const mutation = useMutation({
+  return useMutation({
     mutationFn: fetchUpdateCurrentUserAvatar,
     onSuccess: (data) => {
       const user: User = data.data;
@@ -16,6 +16,4 @@ export default function useUpdateCurrentUserAvatarMutation() {
       queryClient.setQueryData(['get-current-user'], user);
     },
   });
-
-  return mutation;
 }

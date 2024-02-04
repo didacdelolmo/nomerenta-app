@@ -3,8 +3,8 @@ import User from './types/user-interface';
 
 interface Store {
   user?: User;
-  setUser: (user: User) => void;
-  // setAvatar: (avatar: string) => void;
+  setUser: (user?: User) => void;
+  // setAvatar: (avatar: string | null) => void;
 }
 
 const useUserStore = create<Store>()((set) => ({
