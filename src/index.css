@@ -5,3 +5,9 @@
 /* html {
   @apply bg-amber-50;
 } */
+
+a {
+  text-decoration: none;
+  color: inherit;
+  background-color: transparent;
+}

@@ -1,9 +1,11 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { fetchCreateCurrentUserPost } from '../api';
 import Post from '../../store/types/post-interface';
+import useGetRecentPaginatedPosts from '../../hooks/post/use-get-paginated-posts';
 
 export default function useCreateCurrentUserPostMutation() {
   const queryClient = useQueryClient();
+  const { resetPagination } = useGetRecentPaginatedPosts();
 
   const mutation = useMutation({
     mutationFn: fetchCreateCurrentUserPost,
@@ -16,6 +18,7 @@ export default function useCreateCurrentUserPostMutation() {
       queryClient.invalidateQueries({
         queryKey: ['get-posts'],
       });
+      resetPagination();
     },
   });
 

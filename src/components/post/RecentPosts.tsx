@@ -1,29 +1,32 @@
-import useGetPostsQuery from '../../api/queries/user-get-posts-query';
+import useGetRecentPaginatedPosts from '../../hooks/post/use-get-paginated-posts';
 import RecentPostPreview from './RecentPostPreview';
 
 export default function RecentPosts() {
   const {
-    data: response,
+    posts,
+    loadMorePosts,
+    hasMore,
     isPending,
     isError,
     error,
     isSuccess,
-  } = useGetPostsQuery({
-    sortBy: 'score',
-    start: 0,
-    limit: 20,
-  });
+  } = useGetRecentPaginatedPosts();
 
   return (
     <div className="flex flex-col gap-2">
       {isPending && <span>Cargando...</span>}
       {isError && (
-        <span className="text-red-600 underline">{error.message}</span>
+        <span className="text-red-600 underline">{error?.message}</span>
       )}
       {isSuccess &&
-        response.data.map((post, index) => (
+        posts.map((post, index) => (
           <RecentPostPreview key={index} post={post} />
         ))}
+      {!hasMore ? (
+        <span className='text-center my-2 italic text-lg'>Has llegado al fin...</span>
+      ) : (
+        <button onClick={loadMorePosts} className='text-xl font-bold'>Cargar más publicaciones</button>
+      )}
     </div>
   );
 }

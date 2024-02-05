@@ -1,6 +1,7 @@
 import User from './user-interface';
 
 interface Post {
+  _id: string;
   author: string | User;
   title: string;
   content: string;
