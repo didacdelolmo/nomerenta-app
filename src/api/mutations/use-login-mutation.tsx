@@ -13,7 +13,7 @@ export default function useLoginMutation() {
       const user: User = data.data;
 
       setUser(user);
-      queryClient.setQueryData(['get-current-user'], user);
+      queryClient.setQueryData(['get-current-user'], { data: user });
     },
   });
 }

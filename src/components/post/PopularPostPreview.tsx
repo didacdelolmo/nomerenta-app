@@ -1,13 +1,15 @@
+import { Link } from 'react-router-dom';
 import useUserAvatarURL from '../../hooks/user/useUserAvatarURL';
 import Post from '../../store/types/post-interface';
 import User from '../../store/types/user-interface';
 
 export default function PopularPostPreview({ post }: { post: Post }) {
+  const { _id } = post;
   const author = post.author as User;
   const avatar = useUserAvatarURL({ user: author });
 
   return (
-    <div className="p-2 flex items-center gap-2 outline outline-1 outline-gray-500 hover:cursor-pointer hover:bg-gray-50">
+    <Link to={`/posts/${_id}`} className="p-2 flex items-center gap-2 outline outline-1 outline-gray-500 hover:cursor-pointer hover:bg-gray-50">
       <div className="flex flex-col items-center">
         <div className='hover:cursor-pointer hover:text-blue-600'>
           <svg
@@ -50,6 +52,6 @@ export default function PopularPostPreview({ post }: { post: Post }) {
         </div>
         <span className="text-xl">No me renta {post.title}</span>
       </div>
-    </div>
+    </Link>
   );
 }

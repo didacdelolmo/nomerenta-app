@@ -7,15 +7,13 @@ export default function useRegisterMutation() {
   const setUser = useUserStore((state) => state.setUser);
   const queryClient = useQueryClient();
 
-  const mutation = useMutation({
+  return useMutation({
     mutationFn: fetchRegisterUser,
     onSuccess: (data) => {
       const user: User = data.data;
 
       setUser(user);
-      queryClient.setQueryData(['get-current-user'], user);
+      queryClient.setQueryData(['get-current-user'], { data: user });
     },
   });
-
-  return mutation;
 }

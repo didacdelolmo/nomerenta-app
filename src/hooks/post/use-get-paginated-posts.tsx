@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import useGetPostsQuery from '../../api/queries/user-get-posts-query';
+import useGetPostsQuery from '../../api/queries/use-get-posts-query';
 import Post from '../../store/types/post-interface';
 
 export default function useGetRecentPaginatedPosts() {

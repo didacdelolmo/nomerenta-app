@@ -7,7 +7,7 @@ export default function useCreateCurrentUserPostMutation() {
   const queryClient = useQueryClient();
   const { resetPagination } = useGetRecentPaginatedPosts();
 
-  const mutation = useMutation({
+  return useMutation({
     mutationFn: fetchCreateCurrentUserPost,
     onSuccess: (data) => {
       const post: Post = data.data;
@@ -21,6 +21,4 @@ export default function useCreateCurrentUserPostMutation() {
       resetPagination();
     },
   });
-
-  return mutation;
 }

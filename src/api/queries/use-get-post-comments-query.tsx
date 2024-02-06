@@ -4,6 +4,6 @@ import { fetchPostComments } from '../api';
 export default function useGetPostComments({ postId }) {
   return useQuery({
     queryKey: ['get-post-comments', postId],
-    queryFn: () => fetchPostComments(postId),
+    queryFn: () => fetchPostComments({ postId }),
   });
 }

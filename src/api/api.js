@@ -73,6 +73,36 @@ export const fetchCreateCurrentUserPost = async ({ title, content }) => {
   );
 };
 
+export const fetchUpvotePost = ({ postId }) => {
+  return axios.patch(
+    `/posts/${postId}/upvote`,
+    {},
+    {
+      withCredentials: true,
+    }
+  );
+};
+
+export const fetchDownvotePost = ({ postId }) => {
+  return axios.patch(
+    `/posts/${postId}/downvote`,
+    {},
+    {
+      withCredentials: true,
+    }
+  );
+};
+
+export const fetchUnvotePost = ({ postId }) => {
+  return axios.patch(
+    `/posts/${postId}/unvote`,
+    {},
+    {
+      withCredentials: true,
+    }
+  );
+};
+
 export const fetchPostComments = ({ postId }) => {
   return axios.get(`/posts/${postId}/comments`);
 };
@@ -85,5 +115,35 @@ export const fetchCreatePostComment = ({ postId, content, parentId }) => {
     `/posts/${postId}/comments`,
     { postId, content, parentId },
     { withCredentials: true }
+  );
+};
+
+export const fetchUpvoteComment = ({ commentId }) => {
+  return axios.patch(
+    `/comments/${commentId}/upvote`,
+    {},
+    {
+      withCredentials: true,
+    }
+  );
+};
+
+export const fetchDownvoteComment = ({ commentId }) => {
+  return axios.patch(
+    `/comments/${commentId}/downvote`,
+    {},
+    {
+      withCredentials: true,
+    }
+  );
+};
+
+export const fetchUnvoteComment = ({ commentId }) => {
+  return axios.patch(
+    `/comments/${commentId}/unvote`,
+    {},
+    {
+      withCredentials: true,
+    }
   );
 };

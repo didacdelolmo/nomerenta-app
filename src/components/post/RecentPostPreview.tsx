@@ -25,7 +25,7 @@ export default function RecentPostPreview({ post }: { post: Post }) {
           </div>
           <span>{format(date, 'dd/MM/yyyy')}</span>
         </div>
-        <div className="flex items-end gap-1">
+        <div className="flex items-end">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
