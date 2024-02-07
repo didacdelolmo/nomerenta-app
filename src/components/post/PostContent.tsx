@@ -7,6 +7,8 @@ import User from '../../store/types/user-interface';
 import { formatDistanceToNow } from 'date-fns/formatDistanceToNow';
 import { es } from 'date-fns/locale';
 import CreateComment from '../comment/CreateComment';
+import CommentComment from '../comment/CommentContent';
+import { useEffect } from 'react';
 
 export default function PostContent({ post }: { post: Post }) {
   const { _id, title, content, score, commentCount, createdAt: date } = post;
@@ -14,12 +16,8 @@ export default function PostContent({ post }: { post: Post }) {
   const author = post.author as User;
   const avatar = useUserAvatarURL({ user: author });
 
-  const {
-    hasUpvoted,
-    hasDownvoted,
-    handleUpvote,
-    handleDownvote,
-  } = usePostVote({ post });
+  const { hasUpvoted, hasDownvoted, handleUpvote, handleDownvote } =
+    usePostVote({ post });
 
   const {
     data: response,
@@ -28,6 +26,10 @@ export default function PostContent({ post }: { post: Post }) {
     error,
     isSuccess,
   } = useGetPostComments({ postId: _id });
+
+  useEffect(() => {
+    console.log('the response is', response);
+  }, [response]);
 
   const { hasCopied, copyCurrentURL } = useClipboard();
 
@@ -143,8 +145,18 @@ export default function PostContent({ post }: { post: Post }) {
           </div>
         </div>
       </div>
-      <div className="outline outline-1 outline-gray-500 p-2">
-        <CreateComment />
+      <div className="flex flex-col gap-5 outline outline-1 outline-gray-500 p-2">
+        <CreateComment postId={_id} />
+        <div className='overflow-auto flex flex-col gap-5'>
+          {isPending && <span>Cargando comentarios...</span>}
+          {isError && (
+            <span className="text-red-600 underline">{error?.message}</span>
+          )}
+          {isSuccess &&
+            response.data.map((comment, index) => (
+              <CommentComment key={index} comment={comment} />
+            ))}
+        </div>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import useCreateCurrentUserPostMutation from '../../api/mutations/use-create-current-user-post-mutation';
 
-export default function useCreateCurrentUserPostForm() {
+export default function useCreatePostForm() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 

@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import useCreatePostCommentMutation from '../../api/mutations/use-create-post-comment-mutation';
 
-export default function useCreatePostCommentForm({
+export default function useCreateCommentForm({
   postId,
-  parentId = undefined,
+  parentId,
+  onSuccessCallback,
 }: {
   postId: string;
   parentId?: string;
+  onSuccessCallback?: () => void;
 }) {
   const [content, setContent] = useState('');
 
@@ -26,7 +28,16 @@ export default function useCreatePostCommentForm({
     }
 
     e.preventDefault();
-    mutation.mutate({ postId, parentId, content });
+    mutation.mutate(
+      { postId, parentId, content },
+      {
+        onSuccess: () => {
+          if (onSuccessCallback) {
+            onSuccessCallback();
+          }
+        },
+      }
+    );
   };
 
   return {

@@ -1,8 +1,8 @@
-import useCreateCurrentUserPostForm from '../../hooks/post/use-create-current-user-post-form';
+import useCreatePostForm from '../../hooks/post/use-create-post-form';
 
 export default function CreatePost() {
   const { title, content, handleTitle, handleContent, handleSubmit, isPending } =
-    useCreateCurrentUserPostForm();
+    useCreatePostForm();
 
   return (
     <form

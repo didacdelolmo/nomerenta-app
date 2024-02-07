@@ -11,7 +11,7 @@ export default function PopularPostPreview({ post }: { post: Post }) {
   return (
     <Link to={`/posts/${_id}`} className="p-2 flex items-center gap-2 outline outline-1 outline-gray-500 hover:cursor-pointer hover:bg-gray-50">
       <div className="flex flex-col items-center">
-        <div className='hover:cursor-pointer hover:text-blue-600'>
+        <div className='hover:cursor-pointer hover:text-blue-600 flex'>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -28,7 +28,7 @@ export default function PopularPostPreview({ post }: { post: Post }) {
           </svg>
         </div>
         <span className="text-lg font-medium">{post.score}</span>
-        <div className='hover:cursor-pointer hover:text-red-600'>
+        <div className='hover:cursor-pointer hover:text-red-600 flex'>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

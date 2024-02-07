@@ -12,15 +12,23 @@ axios.interceptors.response.use(undefined, (error) => {
   }
 });
 
-export const fetchRegisterUser = async ({ username, password }) => {
-  return await axios.post(
+export const fetchRegisterUser = ({ username, password }) => {
+  return axios.post(
     '/register',
     { username, password },
     { withCredentials: true }
   );
 };
 
-export const fetchLoginUser = async ({ username, password }) => {
+export const fetchRegisterAnonymousUser = () => {
+  return axios.post(
+    '/registerAnonimously',
+    {},
+    { withCredentials: TextTrackCueList }
+  );
+};
+
+export const fetchLoginUser = ({ username, password }) => {
   return axios.post(
     '/login',
     { username, password },
@@ -28,11 +36,11 @@ export const fetchLoginUser = async ({ username, password }) => {
   );
 };
 
-export const fetchGetCurrentUser = async () => {
+export const fetchGetCurrentUser = () => {
   return axios.get('/users/me', { withCredentials: true });
 };
 
-export const fetchUpdateCurrentUserAvatar = async ({ file }) => {
+export const fetchUpdateCurrentUserAvatar = ({ file }) => {
   const formData = new FormData();
   formData.append('avatar', file);
 
@@ -47,25 +55,25 @@ export const fetchUpdateCurrentUserAvatar = async ({ file }) => {
 /**
  * * All the parameters are optional
  */
-export const fetchPosts = async ({ sortBy, start, limit }) => {
+export const fetchPosts = ({ sortBy, start, limit }) => {
   return axios.get('/posts', {
     params: { sortBy, start: parseInt(start), limit: parseInt(limit) },
   });
 };
 
-export const fetchPostById = async ({ postId }) => {
+export const fetchPostById = ({ postId }) => {
   return axios.get(`/posts/${postId}`);
 };
 
-export const fetchCurrentUserPosts = async () => {
+export const fetchCurrentUserPosts = () => {
   return axios.get('/users/me/posts', { withCredentials: true });
 };
 
-export const fetchUserPosts = async ({ userId }) => {
+export const fetchUserPosts = ({ userId }) => {
   return axios.get(`/users/${userId}/posts`);
 };
 
-export const fetchCreateCurrentUserPost = async ({ title, content }) => {
+export const fetchCreateCurrentUserPost = ({ title, content }) => {
   return axios.post(
     '/users/me/posts',
     { title, content },
