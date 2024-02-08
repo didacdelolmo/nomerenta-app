@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import useLoginMutation from '../../api/mutations/use-login-mutation';
-import useRegisterMutation from '../../api/mutations/use-register-mutation';
+import useLoginMutation from '../../api/mutations/auth/use-login-mutation';
+import useRegisterMutation from '../../api/mutations/auth/use-register-mutation';
 
 export default function useAuthForm() {
   const [username, setUsername] = useState('');

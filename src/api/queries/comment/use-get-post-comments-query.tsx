@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchPostComments } from '../api';
+import { fetchPostComments } from '../../api';
 
 export default function useGetPostComments({ postId }) {
   return useQuery({

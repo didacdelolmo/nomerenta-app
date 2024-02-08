@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchGetCurrentUser } from '../api';
-import useUserStore from '../../store/user-store';
+import { fetchGetCurrentUser } from '../../api';
+import useUserStore from '../../../store/user-store';
 import { useEffect } from 'react';
-import User from '../../store/types/user-interface';
+import User from '../../../store/types/user-interface';
 
 export default function useGetCurrentUserQuery() {
   const query = useQuery({

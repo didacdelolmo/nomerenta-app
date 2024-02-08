@@ -1,4 +1,4 @@
-import useUpdateCurrentUserAvatarMutation from '../../api/mutations/use-update-current-user-avatar-mutation';
+import useUpdateCurrentUserAvatarMutation from '../../api/mutations/user/use-update-current-user-avatar-mutation';
 
 export default function useUpdateCurrentUserAvatarInput() {
   const mutation = useUpdateCurrentUserAvatarMutation();

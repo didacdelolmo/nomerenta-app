@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { fetchUpdateCurrentUserAvatar } from '../api';
-import User from '../../store/types/user-interface';
-import useUserStore from '../../store/user-store';
+import { fetchUpdateCurrentUserAvatar } from '../../api';
+import User from '../../../store/types/user-interface';
+import useUserStore from '../../../store/user-store';
 
 export default function useUpdateCurrentUserAvatarMutation() {
   const setUser = useUserStore((state) => state.setUser);

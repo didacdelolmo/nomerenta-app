@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { fetchUpvoteComment } from '../api';
-import Comment from '../../store/types/comment-interface';
+import { fetchUpvoteComment } from '../../api';
+import Comment from '../../../store/types/comment-interface';
 
 export default function useUpvoteCommentMutation() {
   const queryClient = useQueryClient();

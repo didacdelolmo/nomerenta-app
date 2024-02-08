@@ -1,12 +1,12 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { fetchDownvotePost } from '../api';
-import Post from '../../store/types/post-interface';
+import { fetchUnvotePost } from '../../api';
+import Post from '../../../store/types/post-interface';
 
-export default function useDownvotePostMutation() {
+export default function useUnvotePostMutation() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: fetchDownvotePost,
+    mutationFn: fetchUnvotePost,
     onSuccess: (data) => {
       const post: Post = data.data;
 

@@ -1,9 +1,9 @@
 import { useQueryClient } from '@tanstack/react-query';
-import useGetCurrentUserQuery from '../../api/queries/use-get-current-user-query';
+import useGetCurrentUserQuery from '../../api/queries/user/use-get-current-user-query';
 import useUserStore from '../../store/user-store';
 import Cookies from 'js-cookie';
 import { useEffect } from 'react';
-import useRegisterAnonimouslyMutation from '../../api/mutations/use-register-anonimously-mutation';
+import useRegisterAnonimouslyMutation from '../../api/mutations/auth/use-register-anonimously-mutation';
 
 export default function useUser() {
   const query = useGetCurrentUserQuery();

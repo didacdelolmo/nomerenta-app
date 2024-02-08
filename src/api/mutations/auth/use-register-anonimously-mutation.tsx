@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { fetchRegisterAnonymousUser } from '../api';
-import useUserStore from '../../store/user-store';
-import User from '../../store/types/user-interface';
+import { fetchRegisterAnonymousUser } from '../../api';
+import useUserStore from '../../../store/user-store';
+import User from '../../../store/types/user-interface';
 
 export default function useRegisterAnonimouslyMutation() {
   const setUser = useUserStore((state) => state.setUser);

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import useDownvotePostMutation from '../../api/mutations/use-downvote-post-mutation';
-import useUnvotePostMutation from '../../api/mutations/use-unvote-post-mutation';
-import useUpvotePostMutation from '../../api/mutations/use-upvote-post-mutation';
+import useDownvotePostMutation from '../../api/mutations/post/use-downvote-post-mutation';
+import useUnvotePostMutation from '../../api/mutations/post/use-unvote-post-mutation';
+import useUpvotePostMutation from '../../api/mutations/post/use-upvote-post-mutation';
 import Post from '../../store/types/post-interface';
 import useUserStore from '../../store/user-store';
 

@@ -1,4 +1,4 @@
-import useGetPostsQuery from '../../api/queries/use-get-posts-query';
+import useGetPostsQuery from '../../api/queries/post/use-get-posts-query';
 import PopularPostPreview from './PopularPostPreview';
 
 export default function PopularPosts() {

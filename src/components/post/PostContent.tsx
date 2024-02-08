@@ -1,4 +1,4 @@
-import useGetPostComments from '../../api/queries/use-get-post-comments-query';
+import useGetPostComments from '../../api/queries/comment/use-get-post-comments-query';
 import usePostVote from '../../hooks/post/use-post-vote';
 import useClipboard from '../../hooks/useClipboard';
 import useUserAvatarURL from '../../hooks/user/useUserAvatarURL';

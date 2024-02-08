@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import useCreatePostCommentMutation from '../../api/mutations/use-create-post-comment-mutation';
+import useCreatePostCommentMutation from '../../api/mutations/comment/use-create-post-comment-mutation';
 
 export default function useCreateCommentForm({
   postId,

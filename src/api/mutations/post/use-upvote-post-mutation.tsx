@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { fetchUpvotePost } from '../api';
-import Post from '../../store/types/post-interface';
+import { fetchUpvotePost } from '../../api';
+import Post from '../../../store/types/post-interface';
 
 export default function useUpvotePostMutation() {
   const queryClient = useQueryClient();

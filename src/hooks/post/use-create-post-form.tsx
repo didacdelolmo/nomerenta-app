@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import useCreateCurrentUserPostMutation from '../../api/mutations/use-create-current-user-post-mutation';
+import useCreateCurrentUserPostMutation from '../../api/mutations/post/use-create-current-user-post-mutation';
 
 export default function useCreatePostForm() {
   const [title, setTitle] = useState('');

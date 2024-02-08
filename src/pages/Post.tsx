@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import Layout from '../components/Layout';
 import PopularPosts from '../components/post/PopularPosts';
-import useGetPostByIdQuery from '../api/queries/use-get-post-by-id-query';
+import useGetPostByIdQuery from '../api/queries/post/use-get-post-by-id-query';
 import PostContent from '../components/post/PostContent';
 
 export default function Post() {
