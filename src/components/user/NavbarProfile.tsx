@@ -3,7 +3,7 @@ import useUserAvatarURL from '../../hooks/user/useUserAvatarURL';
 import User from '../../store/types/user-interface';
 
 export default function NavbarProfile({ user }: { user: User }) {
-  const { username } = user;
+  const { username, anonymous: isAnonymous } = user;
   const { logout } = useUser();
   const avatar = useUserAvatarURL({ user });
 
@@ -16,9 +16,11 @@ export default function NavbarProfile({ user }: { user: User }) {
           <span>Dios te bendiga</span>
         </div>
       </div>
-      <div>
-        <button>Ver perfil</button>
-        <button onClick={logout}>Cerrar sesión</button>
+      <div className="flex">
+        {!isAnonymous && <button>Ver perfil</button>}
+        <button onClick={logout} className="flex-1">
+          {!isAnonymous ? 'Cerrar sesión' : 'Crear cuenta'}
+        </button>
       </div>
     </div>
   );

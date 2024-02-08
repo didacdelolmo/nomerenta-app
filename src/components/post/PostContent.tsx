@@ -8,7 +8,6 @@ import { formatDistanceToNow } from 'date-fns/formatDistanceToNow';
 import { es } from 'date-fns/locale';
 import CreateComment from '../comment/CreateComment';
 import CommentComment from '../comment/CommentContent';
-import { useEffect } from 'react';
 
 export default function PostContent({ post }: { post: Post }) {
   const { _id, title, content, score, commentCount, createdAt: date } = post;
@@ -26,10 +25,6 @@ export default function PostContent({ post }: { post: Post }) {
     error,
     isSuccess,
   } = useGetPostComments({ postId: _id });
-
-  useEffect(() => {
-    console.log('the response is', response);
-  }, [response]);
 
   const { hasCopied, copyCurrentURL } = useClipboard();
 

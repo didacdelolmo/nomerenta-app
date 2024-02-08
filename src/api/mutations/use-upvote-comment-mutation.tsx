@@ -1,12 +1,12 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { fetchUpvoteComment } from '../api';
 import Comment from '../../store/types/comment-interface';
-import { fetchDownvoteComment } from '../api';
 
-export default function useUnvoteCommentMutation() {
+export default function useUpvoteCommentMutation() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: fetchDownvoteComment,
+    mutationFn: fetchUpvoteComment,
     onSuccess: (data) => {
       const comment: Comment = data.data;
       const postId = comment.post;
