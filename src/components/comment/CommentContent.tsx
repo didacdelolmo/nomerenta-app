@@ -4,7 +4,7 @@ import Comment from '../../store/types/comment-interface';
 import User from '../../store/types/user-interface';
 import { es } from 'date-fns/locale';
 import CreateComment from './CreateComment';
-import useToggler from '../../hooks/useToggler';
+import useToggler from '../../hooks/use-toggler';
 
 export default function CommentContent({ comment }: { comment: Comment }) {
   const { _id: parentId, content, score, replies, createdAt: date } = comment;

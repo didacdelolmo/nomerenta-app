@@ -1,6 +1,6 @@
 import useGetPostComments from '../../api/queries/comment/use-get-post-comments-query';
 import usePostVote from '../../hooks/post/use-post-vote';
-import useClipboard from '../../hooks/useClipboard';
+import useClipboard from '../../hooks/use-clipboard';
 import useUserAvatarURL from '../../hooks/user/useUserAvatarURL';
 import Post from '../../store/types/post-interface';
 import User from '../../store/types/user-interface';
