@@ -2,7 +2,7 @@ import User from '../../store/types/user-interface';
 import defaultAvatar from '../../assets/default.jpg';
 
 export default function useUserAvatarURL({ user }: { user: User }) {
-  const { VITE_REST_API_URL = 'http://127.0.0.1:3000' } = import.meta.env;
+  const { VITE_REST_API_URL } = import.meta.env;
 
   if (user.avatar !== null) {
     return `${VITE_REST_API_URL}/avatars/${user.avatar}`;

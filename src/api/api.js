@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const { VITE_REST_API_URL = 'http://127.0.0.1:3000' } = import.meta.env;
+const { VITE_REST_API_URL } = import.meta.env;
 
 axios.defaults.baseURL = VITE_REST_API_URL;
 
