@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import useGetUserPosts from '../../api/queries/post/use-get-user-posts-query';
 import User from '../../store/types/user-interface';
 import RecentPostPreview from '../post/RecentPostPreview';
