@@ -8,6 +8,7 @@ import {
 import { BrowserRouter } from 'react-router-dom';
 import App from './App.tsx';
 import './index.css';
+import { Analytics } from '@vercel/analytics/react';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -29,6 +30,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <App />
+        <Analytics />
       </BrowserRouter>
     </QueryClientProvider>
   </React.StrictMode>
