@@ -2,11 +2,14 @@ import { Link } from 'react-router-dom';
 import useUserAvatarURL from '../../hooks/user/useUserAvatarURL';
 import Post from '../../store/types/post-interface';
 import User from '../../store/types/user-interface';
+import usePostVote from '../../hooks/post/use-post-vote';
 
 export default function PopularPostPreview({ post }: { post: Post }) {
   const { _id } = post;
   const author = post.author as User;
   const avatar = useUserAvatarURL({ user: author });
+
+  const { hasUpvoted, hasDownvoted } = usePostVote({ post });
 
   return (
     <Link
@@ -14,7 +17,7 @@ export default function PopularPostPreview({ post }: { post: Post }) {
       className="p-2 flex items-center gap-2 outline outline-1 outline-gray-500 hover:cursor-pointer hover:bg-gray-50"
     >
       <div className="flex flex-col items-center">
-        <div className="hover:cursor-pointer hover:text-blue-600 flex">
+        <div className={`${hasUpvoted && 'text-blue-600'} flex`}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -31,7 +34,7 @@ export default function PopularPostPreview({ post }: { post: Post }) {
           </svg>
         </div>
         <span className="text-lg font-medium">{post.score}</span>
-        <div className="hover:cursor-pointer hover:text-red-600 flex">
+        <div className={`${hasDownvoted && 'text-red-600'} flex`}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

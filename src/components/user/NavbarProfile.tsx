@@ -1,9 +1,10 @@
+import { Link } from 'react-router-dom';
 import useUser from '../../hooks/user/useUser';
 import useUserAvatarURL from '../../hooks/user/useUserAvatarURL';
 import User from '../../store/types/user-interface';
 
 export default function NavbarProfile({ user }: { user: User }) {
-  const { username, anonymous: isAnonymous } = user;
+  const { _id, username, anonymous: isAnonymous } = user;
   const { logout } = useUser();
   const avatar = useUserAvatarURL({ user });
 
@@ -17,7 +18,11 @@ export default function NavbarProfile({ user }: { user: User }) {
         </div>
       </div>
       <div className="flex">
-        {!isAnonymous && <button>Ver perfil</button>}
+        {!isAnonymous && (
+          <Link to={`/users/${_id}`}>
+            <button>Ver perfil</button>
+          </Link>
+        )}
         <button onClick={logout} className="flex-1">
           {!isAnonymous ? 'Cerrar sesión' : 'Crear cuenta'}
         </button>

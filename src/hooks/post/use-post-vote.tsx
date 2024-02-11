@@ -37,7 +37,7 @@ export default function usePostVote({ post }: { post: Post }) {
       } else {
         downvote({ postId });
       }
-      setVote('positive');
+      setVote('negative');
     }
   };
 

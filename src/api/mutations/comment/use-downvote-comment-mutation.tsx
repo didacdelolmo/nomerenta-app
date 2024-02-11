@@ -1,7 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import Comment from '../../../store/types/comment-interface';
 import { fetchDownvoteComment } from '../../api';
-
+import Comment from '../../../store/types/comment-interface';
 export default function useDownvoteCommentMutation() {
   const queryClient = useQueryClient();
 

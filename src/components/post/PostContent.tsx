@@ -8,6 +8,7 @@ import { formatDistanceToNow } from 'date-fns/formatDistanceToNow';
 import { es } from 'date-fns/locale';
 import CreateComment from '../comment/CreateComment';
 import CommentComment from '../comment/CommentContent';
+import { Link } from 'react-router-dom';
 
 export default function PostContent({ post }: { post: Post }) {
   const { _id, title, content, score, commentCount, createdAt: date } = post;
@@ -36,7 +37,7 @@ export default function PostContent({ post }: { post: Post }) {
             onClick={handleUpvote}
             className={`${
               hasUpvoted && 'text-blue-600'
-            } hover:text-blue-600 hover:cursor-pointer`}
+            } hover:text-blue-600 hover:cursor-pointer flex`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +59,7 @@ export default function PostContent({ post }: { post: Post }) {
             onClick={handleDownvote}
             className={`${
               hasDownvoted && 'text-red-600'
-            } hover:text-red-600 hover:cursor-pointer`}
+            } hover:text-red-600 hover:cursor-pointer flex`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -78,11 +79,15 @@ export default function PostContent({ post }: { post: Post }) {
         </div>
         <div className="flex flex-col gap-5">
           <div className="flex gap-2">
-            <img height={48} width={48} src={avatar} alt="Avatar" />
+            <Link to={`/users/${author._id}`}>
+              <img height={48} width={48} src={avatar} alt="Avatar" />
+            </Link>
             <div className="flex flex-col justify-evenly">
               <span>
                 Publicado por{' '}
-                <span className="font-bold">{author.username}</span>
+                <Link to={`/users/${author._id}`}>
+                  <span className="font-bold hover:underline">{author.username}</span>
+                </Link>
               </span>
               <span>Hace {formatDistanceToNow(date, { locale: es })}</span>
             </div>
@@ -142,7 +147,7 @@ export default function PostContent({ post }: { post: Post }) {
       </div>
       <div className="flex flex-col gap-5 outline outline-1 outline-gray-500 p-2">
         <CreateComment postId={_id} />
-        <div className='overflow-auto flex flex-col gap-5'>
+        <div className="overflow-auto flex flex-col gap-5">
           {isPending && <span>Cargando comentarios...</span>}
           {isError && (
             <span className="text-red-600 underline">{error?.message}</span>

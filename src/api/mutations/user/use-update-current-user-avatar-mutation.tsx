@@ -14,6 +14,7 @@ export default function useUpdateCurrentUserAvatarMutation() {
 
       setUser(user);
       queryClient.setQueryData(['get-current-user'], { data: user });
+      queryClient.invalidateQueries({ queryKey: ['get-user', user._id] });
     },
   });
 }

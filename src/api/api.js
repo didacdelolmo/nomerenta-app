@@ -8,7 +8,7 @@ axios.interceptors.response.use(undefined, (error) => {
   if (error?.response?.data?.message) {
     throw new Error(error.response.data.message);
   } else {
-    throw new Error('Something bad happened!');
+    throw new Error(`Something bad happened! ${error.message}`);
   }
 });
 
@@ -38,6 +38,10 @@ export const fetchLoginUser = ({ username, password }) => {
 
 export const fetchGetCurrentUser = () => {
   return axios.get('/users/me', { withCredentials: true });
+};
+
+export const fetchUser = ({ userId }) => {
+  return axios.get(`/users/${userId}`);
 };
 
 export const fetchUpdateCurrentUserAvatar = ({ file }) => {
@@ -109,6 +113,10 @@ export const fetchUnvotePost = ({ postId }) => {
       withCredentials: true,
     }
   );
+};
+
+export const fetchUserComments = ({ userId }) => {
+  return axios.get(`/users/${userId}/comments`);
 };
 
 export const fetchPostComments = ({ postId }) => {

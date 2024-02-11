@@ -7,8 +7,6 @@ export default function useUpdateCurrentUserAvatarInput() {
     const file = e.target.files[0];
     if (file) {
       mutation.mutate({ file });
-    } else {
-      // console.error('Something bad happened!');
     }
   };
 

@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import useDownvotePostMutation from '../../api/mutations/post/use-downvote-post-mutation';
-import useUnvotePostMutation from '../../api/mutations/post/use-unvote-post-mutation';
-import useUpvotePostMutation from '../../api/mutations/post/use-upvote-post-mutation';
-import Post from '../../store/types/post-interface';
 import useUserStore from '../../store/user-store';
+import useUpvoteCommentMutation from '../../api/mutations/comment/use-upvote-comment-mutation';
+import useDownvoteCommentMutation from '../../api/mutations/comment/use-downvote-comment-mutation';
+import useUnvoteCommentMutation from '../../api/mutations/comment/use-unvote-comment-mutation';
+import Comment from '../../store/types/comment-interface';
 
-export default function useCommentVote({ post }: { post: Post }) {
-  const { _id: postId } = post;
+export default function useCommentVote({ comment }: { comment: Comment }) {
+  const { _id: commentId } = comment;
 
   const user = useUserStore((state) => state.user);
   const existsUser = user !== undefined;
@@ -16,16 +16,16 @@ export default function useCommentVote({ post }: { post: Post }) {
   const hasUpvoted = vote === 'positive';
   const hasDownvoted = vote === 'negative';
 
-  const { mutate: upvote } = useUpvotePostMutation();
-  const { mutate: downvote } = useDownvotePostMutation();
-  const { mutate: unvote } = useUnvotePostMutation();
+  const { mutate: upvote } = useUpvoteCommentMutation();
+  const { mutate: downvote } = useDownvoteCommentMutation();
+  const { mutate: unvote } = useUnvoteCommentMutation();
 
   const handleUpvote = () => {
     if (existsUser) {
       if (hasUpvoted) {
-        unvote({ postId });
+        unvote({ commentId });
       } else {
-        upvote({ postId });
+        upvote({ commentId });
       }
       setVote('positive');
     }
@@ -33,11 +33,11 @@ export default function useCommentVote({ post }: { post: Post }) {
   const handleDownvote = () => {
     if (existsUser) {
       if (hasDownvoted) {
-        unvote({ postId });
+        unvote({ commentId });
       } else {
-        downvote({ postId });
+        downvote({ commentId });
       }
-      setVote('positive');
+      setVote('negative');
     }
   };
 
@@ -46,8 +46,8 @@ export default function useCommentVote({ post }: { post: Post }) {
       return;
     }
     const _id = user._id as string;
-    const upvotes = post.upvotes as string[];
-    const downvotes = post.downvotes as string[];
+    const upvotes = comment.upvotes as string[];
+    const downvotes = comment.downvotes as string[];
 
     if (upvotes.includes(_id)) {
       setVote('positive');
@@ -56,7 +56,7 @@ export default function useCommentVote({ post }: { post: Post }) {
     } else {
       setVote('none');
     }
-  }, [existsUser, user, post]);
+  }, [existsUser, user, comment]);
 
   return {
     hasUpvoted,
