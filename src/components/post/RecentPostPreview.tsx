@@ -6,7 +6,7 @@ import { format } from 'date-fns';
 import usePostVote from '../../hooks/post/use-post-vote';
 
 export default function RecentPostPreview({ post }: { post: Post }) {
-  const { _id, title, content, score, createdAt: date, commentCount } = post;
+  const { _id, title, content, score, createdAt: date, commentsCount: commentCount } = post;
   const author = post.author as User;
   const avatar = useUserAvatarURL({ user: author });
 

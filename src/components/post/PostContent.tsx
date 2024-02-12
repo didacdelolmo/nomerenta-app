@@ -11,7 +11,7 @@ import CommentComment from '../comment/CommentContent';
 import { Link } from 'react-router-dom';
 
 export default function PostContent({ post }: { post: Post }) {
-  const { _id, title, content, score, commentCount, createdAt: date } = post;
+  const { _id, title, content, score, commentsCount: commentCount, createdAt: date } = post;
 
   const author = post.author as User;
   const avatar = useUserAvatarURL({ user: author });

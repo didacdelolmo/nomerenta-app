@@ -8,7 +8,7 @@ interface Post {
   upvotes: string[] | User[];
   downvotes: string[] | User[];
   score: number;
-  commentCount: number;
+  commentsCount: number;
   createdAt: Date;
 }
 

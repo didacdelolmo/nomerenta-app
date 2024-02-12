@@ -7,31 +7,33 @@ import useRegisterAnonimouslyMutation from '../../api/mutations/auth/use-registe
 
 export default function useUser() {
   const query = useGetCurrentUserQuery();
-  const mutation = useRegisterAnonimouslyMutation();
+  const { mutate: registerAnonimously } = useRegisterAnonimouslyMutation();
   const queryClient = useQueryClient();
 
   const user = useUserStore((state) => state.user);
   const setUser = useUserStore((state) => state.setUser);
 
   const existsUser = user !== undefined;
+  const isPremium = existsUser && user.roleId === 'premium';
 
   const logout = () => {
     Cookies.remove('connect.sid');
     setUser(undefined);
-    queryClient.setQueryData(['get-current-user'], { data: undefined })
+    queryClient.setQueryData(['get-current-user'], { data: undefined });
   };
 
   useEffect(() => {
     if (query.isError) {
-      mutation.mutate();
+      registerAnonimously();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query.isError]);
 
   return {
     user,
     setUser,
     existsUser,
+    isPremium,
     logout,
     ...query,
   };
