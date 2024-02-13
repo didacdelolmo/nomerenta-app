@@ -9,9 +9,17 @@ import { es } from 'date-fns/locale';
 import CreateComment from '../comment/CreateComment';
 import CommentComment from '../comment/CommentContent';
 import { Link } from 'react-router-dom';
+import Markdown from 'react-markdown';
 
 export default function PostContent({ post }: { post: Post }) {
-  const { _id, title, content, score, commentsCount: commentCount, createdAt: date } = post;
+  const {
+    _id,
+    title,
+    content,
+    score,
+    commentsCount: commentCount,
+    createdAt: date,
+  } = post;
 
   const author = post.author as User;
   const avatar = useUserAvatarURL({ user: author });
@@ -86,7 +94,13 @@ export default function PostContent({ post }: { post: Post }) {
               <span>
                 Publicado por{' '}
                 <Link to={`/users/${author._id}`}>
-                  <span className="font-bold hover:underline">{author.username}</span>
+                  <span
+                    className={`${
+                      author.roleId === 'premium' && 'text-yellow-600'
+                    } font-bold hover:underline`}
+                  >
+                    {author.username}
+                  </span>
                 </Link>
               </span>
               <span>Hace {formatDistanceToNow(date, { locale: es })}</span>
@@ -94,7 +108,13 @@ export default function PostContent({ post }: { post: Post }) {
           </div>
           <div className="flex flex-col gap-2">
             <h2 className="m-0">No me renta {title}</h2>
-            <p className="m-0 text-lg">{content}</p>
+            <p className="m-0 text-lg">
+              {author.roleId === 'premium' ? (
+                <Markdown>{content}</Markdown>
+              ) : (
+                content
+              )}
+            </p>
           </div>
           <div className="flex gap-5">
             <div className="flex items-end gap-1">

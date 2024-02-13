@@ -6,6 +6,7 @@ import { es } from 'date-fns/locale';
 import useCommentVote from '../../hooks/comment/use-comment-vote';
 import { Link } from 'react-router-dom';
 import Post from '../../store/types/post-interface';
+import Markdown from 'react-markdown';
 
 export default function CommentPreview({ comment }: { comment: Comment }) {
   const { content, score, createdAt: date } = comment;
@@ -13,21 +14,35 @@ export default function CommentPreview({ comment }: { comment: Comment }) {
   const post = comment.post as Post;
   const avatar = useUserAvatarURL({ user: author });
 
-  const { hasUpvoted, hasDownvoted } =
-    useCommentVote({ comment });
+  const { hasUpvoted, hasDownvoted } = useCommentVote({ comment });
 
   return (
-    <Link to={`/posts/${post._id}`} className="flex gap-2 outline outline-1 outline-gray-500 p-2 hover:bg-gray-50">
+    <Link
+      to={`/posts/${post._id}`}
+      className="flex gap-2 outline outline-1 outline-gray-500 p-2 hover:bg-gray-50"
+    >
       <div className="flex flex-col">
         <img height={48} width={48} src={avatar} alt="Avatar" />
       </div>
       <div className="flex flex-col gap-5 w-full">
         <div className="flex flex-col gap-2">
           <div className="flex flex-col my-2">
-            <span className="font-bold">{author.username}</span>
+            <span
+              className={`${
+                author.roleId === 'premium' && 'text-yellow-600'
+              } font-bold`}
+            >
+              {author.username}
+            </span>
             <span>Hace {formatDistanceToNow(date, { locale: es })}</span>
           </div>
-          <p className="m-0 text-lg leading-6">{content}</p>
+          <p className="m-0 text-lg leading-6">
+            {author.roleId === 'premium' ? (
+              <Markdown>{content}</Markdown>
+            ) : (
+              content
+            )}
+          </p>
           <div className="flex gap-5 items-center">
             <div className="flex items-center gap-2">
               <div className={`${hasUpvoted && 'text-blue-600'} flex`}>

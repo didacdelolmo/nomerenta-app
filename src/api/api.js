@@ -3,7 +3,6 @@ import axios from 'axios';
 const { VITE_REST_API_URL } = import.meta.env;
 
 axios.defaults.baseURL = VITE_REST_API_URL;
-
 axios.interceptors.response.use(undefined, (error) => {
   if (error?.response?.data?.message) {
     throw new Error(error.response.data.message);
@@ -24,7 +23,7 @@ export const fetchRegisterAnonymousUser = () => {
   return axios.post(
     '/registerAnonimously',
     {},
-    { withCredentials: TextTrackCueList }
+    { withCredentials: true }
   );
 };
 

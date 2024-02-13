@@ -1,8 +1,16 @@
 import useCreatePostForm from '../../hooks/post/use-create-post-form';
+import Editor from '../Editor';
 
 export default function CreatePost() {
-  const { title, content, handleTitle, handleContent, handleSubmit, isPending } =
-    useCreatePostForm();
+  const {
+    title,
+    content,
+    handleTitle,
+    handleContent,
+    handleMarkdown,
+    handleSubmit,
+    isPending,
+  } = useCreatePostForm();
 
   return (
     <form
@@ -20,15 +28,12 @@ export default function CreatePost() {
           required
         />
       </div>
-      <div className='flex flex-col gap-2'>
-        <textarea
-          onChange={handleContent}
-          value={content}
+      <div className="flex flex-col gap-2">
+        <Editor
           placeholder={`No me renta ${title ? title : 'la navidad'}`}
-          className="p-2 text-lg"
-          cols={30}
-          rows={10}
-          required
+          content={content}
+          handleContent={handleContent}
+          handleMarkdown={handleMarkdown}
         />
         <button
           type="submit"

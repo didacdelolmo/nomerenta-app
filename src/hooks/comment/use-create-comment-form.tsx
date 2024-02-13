@@ -18,6 +18,10 @@ export default function useCreateCommentForm({
     setContent(e.target.value);
   };
 
+  const handleMarkdown = (content) => {
+    setContent(content);
+  };
+
   const handleSubmit = (e) => {
     const payload: { postId: string; parentId?: string; content: string } = {
       postId,
@@ -43,6 +47,7 @@ export default function useCreateCommentForm({
   return {
     content,
     handleContent,
+    handleMarkdown,
     handleSubmit,
     ...mutation,
   };

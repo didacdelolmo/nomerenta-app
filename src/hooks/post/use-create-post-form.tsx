@@ -15,6 +15,10 @@ export default function useCreatePostForm() {
     setContent(e.target.value);
   };
 
+  const handleMarkdown = (content) => {
+    setContent(content);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     mutation.mutate({ title, content });
@@ -25,6 +29,7 @@ export default function useCreatePostForm() {
     content,
     handleTitle,
     handleContent,
+    handleMarkdown,
     handleSubmit,
     ...mutation,
   };

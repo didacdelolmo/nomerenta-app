@@ -6,6 +6,8 @@ import { es } from 'date-fns/locale';
 import CreateComment from './CreateComment';
 import useToggler from '../../hooks/use-toggler';
 import useCommentVote from '../../hooks/comment/use-comment-vote';
+import { Link } from 'react-router-dom';
+import Markdown from 'react-markdown';
 
 export default function CommentContent({ comment }: { comment: Comment }) {
   const { _id: parentId, content, score, replies, createdAt: date } = comment;
@@ -23,16 +25,31 @@ export default function CommentContent({ comment }: { comment: Comment }) {
   return (
     <div className="flex gap-2">
       <div className="flex flex-col">
-        <img height={48} width={48} src={avatar} alt="Avatar" />
+        <Link to={`/users/${author._id}`}>
+          <img height={48} width={48} src={avatar} alt="Avatar" />
+        </Link>
         <hr className="h-full" />
       </div>
       <div className="flex flex-col gap-5 w-full">
         <div className="flex flex-col gap-2">
           <div className="flex flex-col my-2">
-            <span className="font-bold">{author.username}</span>
+            <Link
+              to={`/users/${author._id}`}
+              className={`${
+                author.roleId === 'premium' && 'text-yellow-600'
+              }  font-bold hover:underline`}
+            >
+              {author.username}
+            </Link>
             <span>Hace {formatDistanceToNow(date, { locale: es })}</span>
           </div>
-          <p className="m-0 text-lg leading-6">{content}</p>
+          <p className="m-0 text-lg leading-6">
+            {author.roleId === 'premium' ? (
+              <Markdown>{content}</Markdown>
+            ) : (
+              content
+            )}
+          </p>
           <div className="flex gap-5 items-center">
             <div className="flex items-center gap-2">
               <div

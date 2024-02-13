@@ -4,6 +4,7 @@ import useUserStore from '../../store/user-store';
 import Cookies from 'js-cookie';
 import { useEffect } from 'react';
 import useRegisterAnonimouslyMutation from '../../api/mutations/auth/use-register-anonimously-mutation';
+import User from '../../store/types/user-interface';
 
 export default function useUser() {
   const query = useGetCurrentUserQuery();
@@ -22,6 +23,10 @@ export default function useUser() {
     queryClient.setQueryData(['get-current-user'], { data: undefined });
   };
 
+  const isCurrentUser = (target: User) => {
+    return target._id === user?._id;
+  };
+
   useEffect(() => {
     if (query.isError) {
       registerAnonimously();
@@ -35,6 +40,7 @@ export default function useUser() {
     existsUser,
     isPremium,
     logout,
+    isCurrentUser,
     ...query,
   };
 }

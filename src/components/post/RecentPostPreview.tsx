@@ -4,11 +4,21 @@ import Post from '../../store/types/post-interface';
 import User from '../../store/types/user-interface';
 import { format } from 'date-fns';
 import usePostVote from '../../hooks/post/use-post-vote';
+import Markdown from 'react-markdown';
 
 export default function RecentPostPreview({ post }: { post: Post }) {
-  const { _id, title, content, score, createdAt: date, commentsCount: commentCount } = post;
+  const {
+    _id,
+    title,
+    content,
+    score,
+    createdAt: date,
+    commentsCount: commentCount,
+  } = post;
   const author = post.author as User;
   const avatar = useUserAvatarURL({ user: author });
+  const shownContent =
+    content.length > 20 ? `${content.substring(0, 64)}...` : content;
 
   const { hasUpvoted, hasDownvoted, handleUpvote, handleDownvote } =
     usePostVote({ post });
@@ -21,9 +31,7 @@ export default function RecentPostPreview({ post }: { post: Post }) {
       <div className="flex flex-col items-center">
         <div
           onClick={handleUpvote}
-          className={`${
-            hasUpvoted && 'text-blue-600'
-          } flex`}
+          className={`${hasUpvoted && 'text-blue-600'} flex`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -43,9 +51,7 @@ export default function RecentPostPreview({ post }: { post: Post }) {
         <span className="text-xl">{score}</span>
         <div
           onClick={handleDownvote}
-          className={`${
-            hasDownvoted && 'text-red-600'
-          } flex`}
+          className={`${hasDownvoted && 'text-red-600'} flex`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -66,13 +72,23 @@ export default function RecentPostPreview({ post }: { post: Post }) {
       <div className="flex flex-col flex-grow min-w-0 justify-between">
         <h2 className="m-0">No me renta {title}</h2>
         <p className="m-0 break-words">
-          {content.length > 20 ? `${content.substring(0, 64)}...` : content}
+          {author.roleId === 'premium' ? (
+            <Markdown>{shownContent}</Markdown>
+          ) : (
+            shownContent
+          )}
         </p>
       </div>
       <div className="flex flex-col flex-shrink-0 items-end justify-between gap-2">
         <div className="flex flex-col items-end">
           <div className="flex gap-1">
-            <span className="font-bold">{author.username}</span>
+            <span
+              className={`${
+                author.roleId === 'premium' && 'text-yellow-600'
+              } font-bold`}
+            >
+              {author.username}
+            </span>
             <img height={24} width={24} src={avatar} alt="Avatar" />
           </div>
           <span>{format(date, 'dd/MM/yyyy')}</span>

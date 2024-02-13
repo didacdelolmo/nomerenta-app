@@ -11,6 +11,9 @@ export default function useCreatePostCommentMutation() {
       const comment: Comment = data.data;
 
       queryClient.invalidateQueries({
+        queryKey: ['get-post-by-id', comment.post],
+      });
+      queryClient.invalidateQueries({
         queryKey: ['get-post-comments', comment.post],
       });
     },

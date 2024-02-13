@@ -1,4 +1,5 @@
 import useCreateCommentForm from '../../hooks/comment/use-create-comment-form';
+import Editor from '../Editor';
 
 export default function CreateComment({
   postId,
@@ -9,19 +10,32 @@ export default function CreateComment({
   parentId?: string;
   onSuccessCallback?: () => void;
 }) {
-  const { content, handleContent, handleSubmit, isPending, isError, error } =
-    useCreateCommentForm({ postId, parentId, onSuccessCallback });
+  const {
+    content,
+    handleContent,
+    handleMarkdown,
+    handleSubmit,
+    isPending,
+    isError,
+    error,
+  } = useCreateCommentForm({ postId, parentId, onSuccessCallback });
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-      <textarea
+      <Editor
+        placeholder="¿En qué piensas?"
+        content={content}
+        handleContent={handleContent}
+        handleMarkdown={handleMarkdown}
+      />
+      {/* <textarea
         value={content}
         onChange={handleContent}
         rows={5}
         placeholder="¿En qué piensas?"
         className="p-2 text-lg"
         required
-      ></textarea>
+      ></textarea> */}
       <button disabled={isPending} className="text-lg">
         Publicar comentario
       </button>
