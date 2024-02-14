@@ -6,8 +6,16 @@
   @apply bg-amber-50;
 } */
 
+div {
+  white-space: pre-wrap;
+}
+
 a {
   text-decoration: none;
   color: inherit;
   background-color: transparent;
+}
+
+p {
+  margin: 0;
 }

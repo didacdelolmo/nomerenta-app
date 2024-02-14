@@ -8,7 +8,7 @@ import {
 import { BrowserRouter } from 'react-router-dom';
 import App from './App.tsx';
 import './index.css';
-import { Analytics } from '@vercel/analytics/react';
+import { AudioProvider } from './context/audio-context.tsx';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -20,7 +20,7 @@ const queryClient = new QueryClient({
   },
   queryCache: new QueryCache({
     onError: (error) => {
-      console.error('Something went wrong', error.message);
+      console.error('Something went wrong:', error.message);
     },
   }),
 });
@@ -29,8 +29,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <App />
-        <Analytics />
+        <AudioProvider>
+          <App />
+        </AudioProvider>
       </BrowserRouter>
     </QueryClientProvider>
   </React.StrictMode>

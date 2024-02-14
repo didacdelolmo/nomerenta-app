@@ -36,13 +36,20 @@ export default function CommentPreview({ comment }: { comment: Comment }) {
             </span>
             <span>Hace {formatDistanceToNow(date, { locale: es })}</span>
           </div>
-          <p className="m-0 text-lg leading-6">
+          <div className="m-0 text-lg leading-6">
             {author.roleId === 'premium' ? (
-              <Markdown>{content}</Markdown>
+              <Markdown
+                components={{
+                  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                  a: ({ node, ...props }) => <span {...props} />,
+                }}
+              >
+                {content}
+              </Markdown>
             ) : (
               content
             )}
-          </p>
+          </div>
           <div className="flex gap-5 items-center">
             <div className="flex items-center gap-2">
               <div className={`${hasUpvoted && 'text-blue-600'} flex`}>

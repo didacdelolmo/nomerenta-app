@@ -24,7 +24,7 @@ export default function Editor({
         <textarea
           onChange={handleContent}
           value={content}
-          className="p-2 text-lg h-64"
+          className="p-2 text-lg h-48"
           placeholder={placeholder}
           required
         />

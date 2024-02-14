@@ -71,13 +71,20 @@ export default function RecentPostPreview({ post }: { post: Post }) {
       </div>
       <div className="flex flex-col flex-grow min-w-0 justify-between">
         <h2 className="m-0">No me renta {title}</h2>
-        <p className="m-0 break-words">
+        <div className="m-0 break-words">
           {author.roleId === 'premium' ? (
-            <Markdown>{shownContent}</Markdown>
+            <Markdown
+              components={{
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                a: ({ node, ...props }) => <span {...props} />,
+              }}
+            >
+              {shownContent}
+            </Markdown>
           ) : (
             shownContent
           )}
-        </p>
+        </div>
       </div>
       <div className="flex flex-col flex-shrink-0 items-end justify-between gap-2">
         <div className="flex flex-col items-end">

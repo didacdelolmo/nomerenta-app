@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import useCreateCurrentUserPostMutation from '../../api/mutations/post/use-create-current-user-post-mutation';
+import replaceWords from '../../utils/replace-words';
+import sillyReplacements from '../../services/silly-replacements';
 
 export default function useCreatePostForm() {
   const [title, setTitle] = useState('');
@@ -21,7 +23,10 @@ export default function useCreatePostForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    mutation.mutate({ title, content });
+    mutation.mutate({
+      title,
+      content: replaceWords(content, sillyReplacements),
+    });
   };
 
   return {
