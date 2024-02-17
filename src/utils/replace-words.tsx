@@ -1,29 +1,17 @@
-const replaceWords = (text: string, replacements: Record<string, string[]>) => {
-  Object.entries(replacements).forEach(([key, [replacement]]) => {
-    // Define a regex that includes optional context around the key for checking
-    // The context is captured in groups for later examination
-    const regex = new RegExp(`(\\b\\w+\\s)?\\b${key}\\b(\\s\\w+\\b)?`, 'gi');
+import { Replacements } from '../config/words-to-replace';
 
-    text = text.replace(regex, (match, before, after) => {
-      // Split the replacement to check its first and last parts
-      const parts = replacement.split(' ');
-      const firstPart = parts[0];
-      const lastPart = parts[parts.length - 1];
+export const replaceWords = (words: string, wordsToReplace: Replacements) => {
+  let modifiedWords = words;
 
-      // Check for redundancy before and after the key
-      if (before && before.trim().endsWith(firstPart)) {
-        return match.replace(key, replacement.replace(firstPart, '').trim());
-      }
-      if (after && after.trim().startsWith(lastPart)) {
-        return match.replace(key, replacement.replace(lastPart, '').trim());
-      }
-
-      // If no redundancy, replace normally
-      return match.replace(key, replacement);
+  Object.entries(wordsToReplace).forEach(([key, replacements]) => {
+    // Matches the key if it's followed by a non-word character (like space, punctuation) or the end of the string
+    // Adjusted the regex to consider case-insensitive matching and whole words/phrases
+    const regex = new RegExp(`\\b${key}\\b(?=\\W|$)`, 'gi');
+    modifiedWords = modifiedWords.replace(regex, () => {
+      const randomIndex = Math.floor(Math.random() * replacements.length);
+      return replacements[randomIndex];
     });
   });
 
-  return text;
+  return modifiedWords;
 };
-
-export default replaceWords;

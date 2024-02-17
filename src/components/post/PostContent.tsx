@@ -1,7 +1,7 @@
 import useGetPostComments from '../../api/queries/comment/use-get-post-comments-query';
 import usePostVote from '../../hooks/post/use-post-vote';
 import useClipboard from '../../hooks/use-clipboard';
-import useUserAvatarURL from '../../hooks/user/useUserAvatarURL';
+import useUserAvatarURL from '../../hooks/user/use-user-avatar-url';
 import Post from '../../store/types/post-interface';
 import User from '../../store/types/user-interface';
 import { formatDistanceToNow } from 'date-fns/formatDistanceToNow';

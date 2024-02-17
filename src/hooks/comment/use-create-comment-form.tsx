@@ -39,6 +39,8 @@ export default function useCreateCommentForm({
           if (onSuccessCallback) {
             onSuccessCallback();
           }
+
+          setContent('');
         },
       }
     );

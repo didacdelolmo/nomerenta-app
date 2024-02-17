@@ -1,5 +1,5 @@
 import { formatDistanceToNow } from 'date-fns';
-import useUserAvatarURL from '../../hooks/user/useUserAvatarURL';
+import useUserAvatarURL from '../../hooks/user/use-user-avatar-url';
 import Comment from '../../store/types/comment-interface';
 import User from '../../store/types/user-interface';
 import { es } from 'date-fns/locale';

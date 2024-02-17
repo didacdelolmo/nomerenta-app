@@ -6,6 +6,7 @@ const AudioContext = createContext({
   toggleAudio: () => {},
 });
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useAudio() {
   return useContext(AudioContext);
 }

@@ -1,5 +1,5 @@
 import EasyMDE from 'easymde';
-import useUser from './user/useUser';
+import useUser from './user/use-user';
 import { useMemo } from 'react';
 
 export default function useEditor() {

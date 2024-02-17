@@ -47,7 +47,7 @@ export const fetchUpdateCurrentUserAvatar = ({ file }) => {
   const formData = new FormData();
   formData.append('avatar', file);
 
-  return axios.post(
+  return axios.patch(
     '/users/me/avatar',
     formData,
     { withCredentials: true }

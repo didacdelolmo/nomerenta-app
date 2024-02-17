@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import useUser from '../../hooks/user/useUser';
-import useUserAvatarURL from '../../hooks/user/useUserAvatarURL';
+import useUser from '../../hooks/user/use-user';
+import useUserAvatarURL from '../../hooks/user/use-user-avatar-url';
 import User from '../../store/types/user-interface';
 
 export default function NavbarProfile({ user }: { user: User }) {

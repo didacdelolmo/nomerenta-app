@@ -1,4 +1,4 @@
-import useUser from '../hooks/user/useUser';
+import useUser from '../hooks/user/use-user';
 import Auth from './auth/Auth';
 import NavbarProfile from './user/NavbarProfile';
 import star from '../assets/star.gif';

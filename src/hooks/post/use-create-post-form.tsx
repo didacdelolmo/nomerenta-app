@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import useCreateCurrentUserPostMutation from '../../api/mutations/post/use-create-current-user-post-mutation';
-import replaceWords from '../../utils/replace-words';
-import sillyReplacements from '../../services/silly-replacements';
+import { useNavigate } from 'react-router-dom';
 
 export default function useCreatePostForm() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
   const mutation = useCreateCurrentUserPostMutation();
+
+  const { data: response, isSuccess } = mutation;
+  const navigate = useNavigate();
 
   const handleTitle = (e) => {
     setTitle(e.target.value);
@@ -23,10 +25,18 @@ export default function useCreatePostForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     mutation.mutate({
       title,
-      content: replaceWords(content, sillyReplacements),
+      content,
     });
+
+    if (isSuccess) {
+      navigate(`/posts/${response.data._id}`);
+
+      setTitle('');
+      setContent('');
+    }
   };
 
   return {
