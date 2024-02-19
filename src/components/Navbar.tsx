@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { useAudio } from '../context/audio-context';
 
 export default function Navbar() {
-  const { user, existsUser, isPending } = useUser();
+  const { user, isPending } = useUser();
   const { isPlaying, toggleAudio } = useAudio();
 
   return (
@@ -52,7 +52,7 @@ export default function Navbar() {
           <img width={48} height={48} src={star} alt="Estrella" />
           {isPending ? (
             <span>Cargando...</span>
-          ) : existsUser && user ? (
+          ) : user ? (
             <NavbarProfile user={user} />
           ) : (
             <Auth />

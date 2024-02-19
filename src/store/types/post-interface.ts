@@ -9,6 +9,7 @@ interface Post {
   downvotes: string[] | User[];
   score: number;
   commentsCount: number;
+  featuredUntil: Date;
   createdAt: Date;
 }
 

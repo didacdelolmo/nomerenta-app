@@ -20,11 +20,7 @@ export const fetchRegisterUser = ({ username, password }) => {
 };
 
 export const fetchRegisterAnonymousUser = () => {
-  return axios.post(
-    '/registerAnonimously',
-    {},
-    { withCredentials: true }
-  );
+  return axios.post('/registerAnonimously', {}, { withCredentials: true });
 };
 
 export const fetchLoginUser = ({ username, password }) => {
@@ -33,6 +29,10 @@ export const fetchLoginUser = ({ username, password }) => {
     { username, password },
     { withCredentials: true }
   );
+};
+
+export const fetchUsers = ({ username }) => {
+  return axios.get('/users', { params: { username } });
 };
 
 export const fetchGetCurrentUser = () => {
@@ -52,6 +52,22 @@ export const fetchUpdateCurrentUserAvatar = ({ file }) => {
     formData,
     { withCredentials: true }
     // { headers: { 'Content-Type': 'multipart/form-data', }, }
+  );
+};
+
+export const fetchSetOutsiderBiography = ({ userId, biography }) => {
+  return axios.patch(
+    `/users/${userId}/biography`,
+    { biography },
+    { withCredentials: true }
+  );
+};
+
+export const fetchSetOutsiderFlair = ({ userId, flair }) => {
+  return axios.patch(
+    `/users/${userId}/flair`,
+    { flair },
+    { withCredentials: true }
   );
 };
 
@@ -114,6 +130,16 @@ export const fetchUnvotePost = ({ postId }) => {
   );
 };
 
+export const fetchFeaturePost = ({ postId }) => {
+  return axios.patch(
+    `/posts/${postId}/feature`,
+    {},
+    {
+      withCredentials: true,
+    }
+  );
+};
+
 export const fetchUserComments = ({ userId }) => {
   return axios.get(`/users/${userId}/comments`);
 };
@@ -161,4 +187,24 @@ export const fetchUnvoteComment = ({ commentId }) => {
       withCredentials: true,
     }
   );
+};
+
+export const fetchCurrentUserNotifications = () => {
+  return axios.get('/users/me/notifications', { withCredentials: true });
+};
+
+export const fetchCurrentUserUnseenNotificationsCount = () => {
+  return axios.get('/users/me/notifications/unseen/count', { withCredentials: true });
+};
+
+export const fetchMarkCurrentUserNotificationsAsSeen = () => {
+  return axios.patch(
+    '/users/me/notifications/seen',
+    {},
+    { withCredentials: true }
+  );
+};
+
+export const fetchIncrementCounter = () => {
+  return axios.patch('/counter/increment');
 };

@@ -7,21 +7,19 @@ import useRegisterAnonimouslyMutation from '../../api/mutations/auth/use-registe
 import User from '../../store/types/user-interface';
 
 export default function useUser() {
-  const query = useGetCurrentUserQuery();
-  const { mutate: registerAnonimously } = useRegisterAnonimouslyMutation();
   const queryClient = useQueryClient();
+
+  const query = useGetCurrentUserQuery();
+  const mutation = useRegisterAnonimouslyMutation();
 
   const user = useUserStore((state) => state.user);
   const setUser = useUserStore((state) => state.setUser);
 
-  const existsUser = user !== undefined;
-  const isPremium = existsUser && user.roleId === 'premium';
+  const roleId = user?.roleId;
 
-  const logout = () => {
-    Cookies.remove('connect.sid');
-    setUser(undefined);
-    queryClient.setQueryData(['get-current-user'], { data: undefined });
-  };
+  const isPremium = roleId === 'premium';
+  const isAdmin = roleId === 'admin';
+  const isBoss = roleId === 'boss';
 
   const isCurrentUser = (target: User) => {
     return target._id === user?._id;
@@ -29,18 +27,27 @@ export default function useUser() {
 
   useEffect(() => {
     if (query.isError) {
-      registerAnonimously();
+      mutation.mutate();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query.isError]);
 
+  const logout = () => {
+    Cookies.remove('connect.sid');
+    setUser(undefined);
+    queryClient.setQueryData(['get-current-user'], { data: undefined });
+  };
+
   return {
     user,
     setUser,
-    existsUser,
-    isPremium,
-    logout,
     isCurrentUser,
+    logout,
+
+    isPremium,
+    isAdmin,
+    isBoss,
+
     ...query,
   };
 }
