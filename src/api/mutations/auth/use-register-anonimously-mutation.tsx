@@ -14,6 +14,12 @@ export default function useRegisterAnonimouslyMutation() {
 
       setUser(user);
       queryClient.setQueryData(['get-current-user'], { data: user });
+      queryClient.invalidateQueries({
+        queryKey: ['get-current-user-notifications'],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ['get-current-user-unseen-notifications-count'],
+      });
     },
   });
 }

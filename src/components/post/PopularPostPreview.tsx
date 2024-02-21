@@ -3,11 +3,13 @@ import useUserAvatarURL from '../../hooks/user/use-user-avatar-url';
 import Post from '../../store/types/post-interface';
 import User from '../../store/types/user-interface';
 import usePostVote from '../../hooks/post/use-post-vote';
+import useUserRoleClassColor from '../../hooks/user/use-user-role-class';
 
 export default function PopularPostPreview({ post }: { post: Post }) {
   const { _id } = post;
   const author = post.author as User;
   const avatar = useUserAvatarURL({ user: author });
+  const { classColor } = useUserRoleClassColor({ user: author });
 
   const { hasUpvoted, hasDownvoted } = usePostVote({ post });
 
@@ -54,13 +56,7 @@ export default function PopularPostPreview({ post }: { post: Post }) {
       <div className="flex flex-col items-center">
         <div className="flex items-center gap-1 self-start">
           <img height={24} width={24} src={avatar} alt="Avatar" />
-          <span
-            className={`${
-              author.roleId === 'premium' && 'text-yellow-600'
-            } font-bold`}
-          >
-            {author.username}
-          </span>
+          <span className={`${classColor} font-bold`}>{author.username}</span>
         </div>
         <span className="text-xl">No me renta {post.title}</span>
       </div>

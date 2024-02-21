@@ -8,6 +8,7 @@ import useToggler from '../../hooks/use-toggler';
 import useCommentVote from '../../hooks/comment/use-comment-vote';
 import { Link } from 'react-router-dom';
 import Markdown from 'react-markdown';
+import useUserRoleClassColor from '../../hooks/user/use-user-role-class';
 
 export default function CommentContent({ comment }: { comment: Comment }) {
   const { _id: parentId, content, score, replies, createdAt: date } = comment;
@@ -15,6 +16,7 @@ export default function CommentContent({ comment }: { comment: Comment }) {
   const postId = comment.post as string;
   const author = comment.author as unknown as User;
 
+  const { classColor } = useUserRoleClassColor({ user: author });
   const avatar = useUserAvatarURL({ user: author });
 
   const { isToggled, handleToggle } = useToggler();
@@ -31,20 +33,21 @@ export default function CommentContent({ comment }: { comment: Comment }) {
         <hr className="h-full" />
       </div>
       <div className="flex flex-col gap-5 w-full">
-        <div className="flex flex-col gap-2">
-          <div className="flex flex-col my-2">
-            <Link
-              to={`/users/${author._id}`}
-              className={`${
-                author.roleId === 'premium' && 'text-yellow-600'
-              }  font-bold hover:underline`}
-            >
-              {author.username}
-            </Link>
-            <span>Hace {formatDistanceToNow(date, { locale: es })}</span>
+        <div className="flex flex-col gap-2 mt-2">
+          <div className="flex flex-col gap-1">
+            <div className="flex flex-col">
+              <Link
+                to={`/users/${author._id}`}
+                className={`${classColor}  font-bold hover:underline w-fit`}
+              >
+                {author.username}
+              </Link>
+              <span>Hace {formatDistanceToNow(date, { locale: es })}</span>
+            </div>
+            {author.flair && <span className="italic bg-gray-100 w-fit px-2 ">{author.flair}</span>}
           </div>
           <p className="m-0 text-lg leading-6">
-            {author.roleId === 'premium' ? (
+            {author.roleId !== 'member' ? (
               <Markdown>{content}</Markdown>
             ) : (
               content

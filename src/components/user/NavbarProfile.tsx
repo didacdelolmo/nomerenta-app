@@ -2,10 +2,12 @@ import { Link } from 'react-router-dom';
 import useUser from '../../hooks/user/use-user';
 import useUserAvatarURL from '../../hooks/user/use-user-avatar-url';
 import User from '../../store/types/user-interface';
+import useUserRoleClassColor from '../../hooks/user/use-user-role-class';
 
 export default function NavbarProfile({ user }: { user: User }) {
   const { _id, username, anonymous: isAnonymous } = user;
   const { logout } = useUser();
+  const { classColor } = useUserRoleClassColor({ user });
   const avatar = useUserAvatarURL({ user });
 
   return (
@@ -13,7 +15,7 @@ export default function NavbarProfile({ user }: { user: User }) {
       <div className="flex gap-2 items-center">
         <img height={48} width={48} src={avatar} alt={username} />
         <div className="flex flex-col">
-          <span className="font-semibold">{username}</span>
+          <span className={`${classColor} font-semibold`}>{username}</span>
           <span>Dios te bendiga</span>
         </div>
       </div>

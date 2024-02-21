@@ -17,6 +17,7 @@ export default function useUser() {
 
   const roleId = user?.roleId;
 
+  const isMember = roleId === 'member';
   const isPremium = roleId === 'premium';
   const isAdmin = roleId === 'admin';
   const isBoss = roleId === 'boss';
@@ -36,6 +37,12 @@ export default function useUser() {
     Cookies.remove('connect.sid');
     setUser(undefined);
     queryClient.setQueryData(['get-current-user'], { data: undefined });
+    queryClient.invalidateQueries({
+      queryKey: ['get-current-user-notifications'],
+    });
+    queryClient.invalidateQueries({
+      queryKey: ['get-current-user-unseen-notifications-count'],
+    });
   };
 
   return {
@@ -44,6 +51,7 @@ export default function useUser() {
     isCurrentUser,
     logout,
 
+    isMember,
     isPremium,
     isAdmin,
     isBoss,

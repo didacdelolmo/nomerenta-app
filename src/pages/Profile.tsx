@@ -19,8 +19,8 @@ export default function Profile() {
 
   return (
     <Layout>
-      <div className="flex flex-col md:grid grid-cols-4 gap-2">
-        <div className="hidden md:grid md:col-span-1">
+      <div className="flex flex-col lg:grid grid-cols-4 gap-2">
+        <div className="hidden lg:grid lg:col-span-1">
           <PopularPosts />
         </div>
         <div className="col-span-2">
@@ -30,7 +30,7 @@ export default function Profile() {
           )}
           {isSuccess && <ProfileContent user={response.data} />}
         </div>
-        <div className="hidden md:grid md:col-span-1">
+        <div className="hidden lg:grid lg:col-span-1">
           <Gifs />
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useCreateCurrentUserPostMutation from '../../api/mutations/post/use-create-current-user-post-mutation';
 import { useNavigate } from 'react-router-dom';
 
@@ -30,14 +30,18 @@ export default function useCreatePostForm() {
       title,
       content,
     });
-
-    if (isSuccess) {
-      navigate(`/posts/${response.data._id}`);
-
-      setTitle('');
-      setContent('');
-    }
   };
+
+  useEffect(() => {
+      if (!isSuccess) {
+      return;
+    }
+
+    navigate(`/posts/${response.data._id}`);
+
+    setTitle('');
+    setContent('');
+  }, [isSuccess]);
 
   return {
     title,

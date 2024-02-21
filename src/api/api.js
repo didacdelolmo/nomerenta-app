@@ -11,16 +11,12 @@ axios.interceptors.response.use(undefined, (error) => {
   }
 });
 
-export const fetchRegisterUser = ({ username, password }) => {
+export const fetchRegisterUser = ({ username, password, code }) => {
   return axios.post(
     '/register',
-    { username, password },
+    { username, password, code },
     { withCredentials: true }
   );
-};
-
-export const fetchRegisterAnonymousUser = () => {
-  return axios.post('/registerAnonimously', {}, { withCredentials: true });
 };
 
 export const fetchLoginUser = ({ username, password }) => {
@@ -55,6 +51,22 @@ export const fetchUpdateCurrentUserAvatar = ({ file }) => {
   );
 };
 
+export const fetchUserFollows = ({ userId }) => {
+  return axios.get(`/users/${userId}/following`, { withCredentials: true });
+};
+
+export const fetchUserFollowers = ({ userId }) => {
+  return axios.get(`/users/${userId}/followers`, { withCredentials: true });
+};
+
+export const fetchFollow = ({ userId }) => {
+  return axios.post(`/users/${userId}/follow`, { withCredentials: true });
+};
+
+export const fetchUnfollow = ({ userId }) => {
+  return axios.post(`/users/${userId}/unfollow`, { withCredentials: true });
+};
+
 export const fetchSetOutsiderBiography = ({ userId, biography }) => {
   return axios.patch(
     `/users/${userId}/biography`,
@@ -80,12 +92,20 @@ export const fetchPosts = ({ sortBy, start, limit }) => {
   });
 };
 
+export const fetchFeaturedPosts = () => {
+  return axios.get('/posts/featured');
+};
+
 export const fetchPostById = ({ postId }) => {
   return axios.get(`/posts/${postId}`);
 };
 
 export const fetchCurrentUserPosts = () => {
   return axios.get('/users/me/posts', { withCredentials: true });
+};
+
+export const fetchCurrentUserFollowsPosts = () => {
+  return axios.get('/users/me/following/posts', { withCredentials: true });
 };
 
 export const fetchUserPosts = ({ userId }) => {
@@ -194,7 +214,9 @@ export const fetchCurrentUserNotifications = () => {
 };
 
 export const fetchCurrentUserUnseenNotificationsCount = () => {
-  return axios.get('/users/me/notifications/unseen/count', { withCredentials: true });
+  return axios.get('/users/me/notifications/unseen/count', {
+    withCredentials: true,
+  });
 };
 
 export const fetchMarkCurrentUserNotificationsAsSeen = () => {
@@ -207,4 +229,16 @@ export const fetchMarkCurrentUserNotificationsAsSeen = () => {
 
 export const fetchIncrementCounter = () => {
   return axios.patch('/counter/increment');
+};
+
+export const fetchCurrentUserInvitations = () => {
+  return axios.get('/users/me/invitations', { withCredentials: true });
+};
+
+export const fetchCreateCurrentUserInvitations = ({ email }) => {
+  return axios.post(
+    '/users/me/invitations',
+    { email },
+    { withCredentials: true }
+  );
 };

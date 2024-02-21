@@ -10,6 +10,7 @@ import CreateComment from '../comment/CreateComment';
 import CommentComment from '../comment/CommentContent';
 import { Link } from 'react-router-dom';
 import Markdown from 'react-markdown';
+import useUserRoleClassColor from '../../hooks/user/use-user-role-class';
 
 export default function PostContent({ post }: { post: Post }) {
   const {
@@ -23,6 +24,7 @@ export default function PostContent({ post }: { post: Post }) {
 
   const author = post.author as User;
   const avatar = useUserAvatarURL({ user: author });
+  const { classColor } = useUserRoleClassColor({ user: author });
 
   const { hasUpvoted, hasDownvoted, handleUpvote, handleDownvote } =
     usePostVote({ post });
@@ -91,25 +93,25 @@ export default function PostContent({ post }: { post: Post }) {
               <img height={48} width={48} src={avatar} alt="Avatar" />
             </Link>
             <div className="flex flex-col justify-evenly">
-              <span>
-                Publicado por{' '}
-                <Link to={`/users/${author._id}`}>
-                  <span
-                    className={`${
-                      author.roleId === 'premium' && 'text-yellow-600'
-                    } font-bold hover:underline`}
-                  >
-                    {author.username}
-                  </span>
-                </Link>
-              </span>
-              <span>Hace {formatDistanceToNow(date, { locale: es })}</span>
+              <div className="flex gap-2">
+                <span>
+                  Publicado por{' '}
+                  <Link to={`/users/${author._id}`}>
+                    <span className={`${classColor} font-bold hover:underline`}>
+                      {author.username}
+                    </span>
+                  </Link>
+                </span>
+                <span>•</span>
+                <span>Hace {formatDistanceToNow(date, { locale: es })}</span>
+              </div>
+              {author.flair && <span className='italic bg-gray-100 px-2 w-fit'>{author.flair}</span>}
             </div>
           </div>
           <div className="flex flex-col gap-5">
             <h2 className="m-0">No me renta {title}</h2>
             <p className="m-0 text-lg">
-              {author.roleId === 'premium' ? (
+              {author.roleId !== 'member' ? (
                 <Markdown>{content}</Markdown>
               ) : (
                 content

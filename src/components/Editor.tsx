@@ -8,11 +8,11 @@ export default function Editor({
   handleContent,
   handleMarkdown,
 }) {
-  const { isPremium, editorOptions } = useEditor();
+  const { isMember, editorOptions } = useEditor();
 
   return (
     <>
-      {isPremium ? (
+      {!isMember ? (
         <SimpleMdeReact
           onChange={handleMarkdown}
           value={content}

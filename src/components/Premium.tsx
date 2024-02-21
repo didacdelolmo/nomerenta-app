@@ -1,6 +1,6 @@
 export default function Premium() {
   return (
-    <a href="https://premium.nomerenta.com" target="_blank">
+    <a href="https://buy.stripe.com/9AQg08e7bc312haaEF" target="_blank">
       <button className="text-2xl">Comprar PREMIUM</button>
     </a>
   );

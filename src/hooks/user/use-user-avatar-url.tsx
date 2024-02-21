@@ -1,10 +1,10 @@
 import User from '../../store/types/user-interface';
 import defaultAvatar from '../../assets/default.jpg';
 
-export default function useUserAvatarURL({ user }: { user: User }) {
+export default function useUserAvatarURL({ user }: { user: User | null }) {
   const { VITE_REST_API_URL } = import.meta.env;
 
-  if (user.avatar !== null) {
+  if (user && user.avatar) {
     return `${VITE_REST_API_URL}/avatars/${user.avatar}`;
   }
   return defaultAvatar;

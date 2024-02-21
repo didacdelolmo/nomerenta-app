@@ -3,7 +3,7 @@ import useUser from './user/use-user';
 import { useMemo } from 'react';
 
 export default function useEditor() {
-  const { isPremium } = useUser();
+  const { isMember } = useUser();
 
   const editorOptions: EasyMDE.Options = useMemo(() => {
     return {
@@ -14,5 +14,5 @@ export default function useEditor() {
     };
   }, []);
 
-  return { isPremium, editorOptions };
+  return { isMember, editorOptions };
 }

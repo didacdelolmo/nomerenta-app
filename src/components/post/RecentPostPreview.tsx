@@ -5,6 +5,7 @@ import User from '../../store/types/user-interface';
 import { format } from 'date-fns';
 import usePostVote from '../../hooks/post/use-post-vote';
 import Markdown from 'react-markdown';
+import useUserRoleClassColor from '../../hooks/user/use-user-role-class';
 
 export default function RecentPostPreview({ post }: { post: Post }) {
   const {
@@ -17,6 +18,7 @@ export default function RecentPostPreview({ post }: { post: Post }) {
   } = post;
   const author = post.author as User;
   const avatar = useUserAvatarURL({ user: author });
+  const { classColor } = useUserRoleClassColor({ user: author });
   const shownContent =
     content.length > 20 ? `${content.substring(0, 64)}...` : content;
 
@@ -72,13 +74,8 @@ export default function RecentPostPreview({ post }: { post: Post }) {
       <div className="flex flex-col flex-grow min-w-0 justify-between">
         <h2 className="m-0">No me renta {title}</h2>
         <div className="m-0 break-words">
-          {author.roleId === 'premium' ? (
-            <Markdown
-              components={{
-                // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                a: ({ node, ...props }) => <span {...props} />,
-              }}
-            >
+          {author.roleId !== 'member' ? (
+            <Markdown>
               {shownContent}
             </Markdown>
           ) : (
@@ -89,13 +86,7 @@ export default function RecentPostPreview({ post }: { post: Post }) {
       <div className="flex flex-col flex-shrink-0 items-end justify-between gap-2">
         <div className="flex flex-col items-end">
           <div className="flex gap-1">
-            <span
-              className={`${
-                author.roleId === 'premium' && 'text-yellow-600'
-              } font-bold`}
-            >
-              {author.username}
-            </span>
+            <span className={`${classColor} font-bold`}>{author.username}</span>
             <img height={24} width={24} src={avatar} alt="Avatar" />
           </div>
           <span>{format(date, 'dd/MM/yyyy')}</span>
