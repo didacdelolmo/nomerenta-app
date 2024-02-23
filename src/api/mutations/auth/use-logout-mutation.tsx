@@ -1,19 +1,18 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { fetchRegister } from '../../api';
+import { fetchLogout } from '../../api';
 import useUserStore from '../../../store/user-store';
-import User from '../../../store/types/user-interface';
 
-export default function useRegisterMutation() {
+export default function useLogoutMutation() {
   const setUser = useUserStore((state) => state.setUser);
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: fetchRegister,
-    onSuccess: (data) => {
-      const user: User = data.data;
+    mutationFn: fetchLogout,
 
-      setUser(user);
-      queryClient.setQueryData(['get-current-user'], { data: user });
+    onSuccess: () => {
+      setUser(undefined);
+
+      queryClient.invalidateQueries({ queryKey: ['get-current-user'] });
       queryClient.invalidateQueries({
         queryKey: ['get-current-user-notifications'],
       });

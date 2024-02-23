@@ -11,7 +11,7 @@ axios.interceptors.response.use(undefined, (error) => {
   }
 });
 
-export const fetchRegisterUser = ({ username, password, code }) => {
+export const fetchRegister = ({ username, password, code }) => {
   return axios.post(
     '/register',
     { username, password, code },
@@ -19,12 +19,16 @@ export const fetchRegisterUser = ({ username, password, code }) => {
   );
 };
 
-export const fetchLoginUser = ({ username, password }) => {
+export const fetchLogin = ({ username, password }) => {
   return axios.post(
     '/login',
     { username, password },
     { withCredentials: true }
   );
+};
+
+export const fetchLogout = () => {
+  return axios.post('/logout', {}, { withCredentials: true });
 };
 
 export const fetchUsers = ({ username }) => {

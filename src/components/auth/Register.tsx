@@ -19,15 +19,15 @@ export default function Register({ displayLogin }) {
   } = useRegister({ invitationCode: invitationCode ?? '' });
 
   return (
-    <>
+    <div className='flex flex-col'>
       <form onSubmit={handleSubmit} className="flex flex-col items-start gap-1">
-        <div className="flex gap-1">
+        <div className="flex gap-1 w-full">
           <input
             onChange={handleUsername}
             value={username}
             placeholder="Nombre de usuario"
             type="text"
-            className="w-20 sm:w-32"
+            className="w-16 sm:w-32"
             required
           />
           <input
@@ -35,7 +35,7 @@ export default function Register({ displayLogin }) {
             value={password}
             placeholder="Contraseña"
             type="password"
-            className="w-20 sm:w-32"
+            className="w-16 sm:w-32"
             required
           />
         </div>
@@ -49,7 +49,7 @@ export default function Register({ displayLogin }) {
           required
         />
         <div className="flex w-full gap-1">
-          <button type="submit" className="w-full">
+          <button type="submit" className="w-full" disabled={isPending}>
             Registrarse
           </button>
           <button
@@ -65,6 +65,6 @@ export default function Register({ displayLogin }) {
       {isError && (
         <span className="text-red-600 underline">{error.message}</span>
       )}
-    </>
+    </div>
   );
 }

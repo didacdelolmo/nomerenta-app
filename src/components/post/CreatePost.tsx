@@ -17,6 +17,7 @@ export default function CreatePost() {
       onSubmit={handleSubmit}
       className="p-2 gap-5 flex flex-col outline outline-1 outline-gray-500"
     >
+      {/* <span>Members Only</span> */}
       <div className="flex flex-col md:flex-row items-center gap-2 p-1 md:p-0">
         <h2 className="text-4xl m-0">No me renta</h2>
         <input

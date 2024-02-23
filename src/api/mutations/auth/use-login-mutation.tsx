@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { fetchLoginUser } from '../../api';
+import { fetchLogin } from '../../api';
 import User from '../../../store/types/user-interface';
 import useUserStore from '../../../store/user-store';
 
@@ -8,7 +8,7 @@ export default function useLoginMutation() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: fetchLoginUser,
+    mutationFn: fetchLogin,
     onSuccess: (data) => {
       const user: User = data.data;
 

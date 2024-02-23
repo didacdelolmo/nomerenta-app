@@ -13,14 +13,14 @@ export default function Login({ displayRegister }) {
   } = useLogin();
 
   return (
-    <div>
+    <div className='flex flex-col'>
       <form onSubmit={handleSubmit} className="flex flex-col items-start gap-1">
         <input
           onChange={handleUsername}
           value={username}
           placeholder="Nombre de usuario"
           type="text"
-          className="w-48"
+          className="w-32 sm:w-64"
           required
         />
         <input
@@ -28,7 +28,7 @@ export default function Login({ displayRegister }) {
           value={password}
           placeholder="Contraseña"
           type="password"
-          className="w-48"
+          className="w-32 sm:w-64"
           required
         />
         <div className="flex w-full gap-1">
@@ -39,7 +39,7 @@ export default function Login({ displayRegister }) {
           >
             Registrarse
           </button>
-          <button type="submit" className="w-full">
+          <button type="submit" className="w-full" disabled={isPending}>
             Iniciar sesión
           </button>
         </div>

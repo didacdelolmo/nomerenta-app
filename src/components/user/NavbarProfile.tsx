@@ -2,12 +2,15 @@ import { Link } from 'react-router-dom';
 import useUserAvatarURL from '../../hooks/user/use-user-avatar-url';
 import useUserRoleColorClass from '../../hooks/user/use-user-role-class';
 import useUserStore from '../../store/user-store';
+import useLogoutMutation from '../../api/mutations/auth/use-logout-mutation';
 
 export default function NavbarProfile() {
   const user = useUserStore((state) => state.user);
 
   const { roleColorClass } = useUserRoleColorClass({ user });
   const { avatar } = useUserAvatarURL({ user: user ?? null });
+
+  const { mutate: logout } = useLogoutMutation();
 
   return (
     <>
@@ -22,11 +25,13 @@ export default function NavbarProfile() {
               <span>Dios te bendiga</span>
             </div>
           </div>
-          <div className='flex gap-1'>
-            <Link to={`/users/${user._id}`} className='flex'>
+          <div className="flex gap-1">
+            <Link to={`/users/${user._id}`} className="flex">
               <button>Ver perfil</button>
             </Link>
-            <button className='flex'>Cerrar sesión</button>
+            <button onClick={() => logout()} className="flex">
+              Cerrar sesión
+            </button>
           </div>
         </div>
       )}

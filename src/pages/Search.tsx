@@ -1,5 +1,6 @@
-import Gifs from "../components/Gifs";
-import PopularPosts from "../components/post/PopularPosts";
+import Gifs from '../components/Gifs';
+import SearchContent from '../components/SearchContent';
+import PopularPosts from '../components/post/PopularPosts';
 
 export default function Search() {
   return (
@@ -8,7 +9,7 @@ export default function Search() {
         <PopularPosts />
       </div>
       <div className="col-span-2 flex flex-col gap-2">
-        
+        <SearchContent />
       </div>
       <div className="hidden lg:grid col-span-1">
         <Gifs />
