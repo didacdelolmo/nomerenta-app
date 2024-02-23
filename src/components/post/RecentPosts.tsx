@@ -14,6 +14,7 @@ export default function RecentPosts() {
 
   return (
     <div className="flex flex-col gap-2">
+      <h2 className="text-center">Publicaciones más recientes</h2>
       {isPending && <span>Cargando...</span>}
       {isError && (
         <span className="text-red-600 underline">{error?.message}</span>
@@ -23,9 +24,13 @@ export default function RecentPosts() {
           <RecentPostPreview key={index} post={post} />
         ))}
       {!hasMore ? (
-        <span className='text-center my-2 italic text-lg'>Has llegado al fin...</span>
+        <span className="text-center my-2 italic text-lg">
+          Has llegado al fin...
+        </span>
       ) : (
-        <button onClick={loadMorePosts} className='text-xl font-bold'>Cargar más publicaciones</button>
+        <button onClick={loadMorePosts} className="text-xl font-bold">
+          Cargar más publicaciones
+        </button>
       )}
     </div>
   );

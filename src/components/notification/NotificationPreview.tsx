@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Notification from '../../store/types/notification-interface';
-import useNotification from '../../hooks/notification/use-notification-hook';
+import useNotification from '../../hooks/notification/use-notification';
 
 export default function NotificationPreview({
   notification,

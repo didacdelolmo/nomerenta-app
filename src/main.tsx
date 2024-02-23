@@ -19,9 +19,9 @@ const queryClient = new QueryClient({
     },
   },
   queryCache: new QueryCache({
-    onError: (error) => {
-      console.error('Something went wrong:', error.message);
-    },
+    // onError: (error) => {
+    //   console.error('Something went wrong:', error.message);
+    // },
   }),
 });
 

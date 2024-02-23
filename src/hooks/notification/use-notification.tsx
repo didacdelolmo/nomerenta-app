@@ -15,7 +15,7 @@ export default function useNotification({
   const existsSender = sender !== null;
   const existsPost = post !== null;
 
-  const senderAvatar = useUserAvatarURL({ user: sender });
+  const { avatar } = useUserAvatarURL({ user: sender });
 
   return {
     sender,
@@ -23,6 +23,6 @@ export default function useNotification({
     message,
     existsSender,
     existsPost,
-    senderAvatar,
+    senderAvatar: avatar,
   };
 }

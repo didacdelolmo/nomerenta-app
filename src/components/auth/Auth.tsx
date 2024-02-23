@@ -1,43 +1,21 @@
-import useAuthForm from '../../hooks/auth/use-auth-form';
+import { useCallback, useState } from 'react';
+import Register from './Register';
+import Login from './Login';
 
 export default function Auth() {
-  const {
-    username,
-    password,
-    handleUsername,
-    handlePassword,
-    handleRegister,
-    handleLogin,
-    isPending,
-    isError,
-    error,
-  } = useAuthForm();
+  const [display, setDisplay] = useState<'register' | 'login'>('register');
+
+  const displayRegister = useCallback(() => {
+    setDisplay('register');
+  }, []);
+  const displayLogin = useCallback(() => {
+    setDisplay('login');
+  }, []);
 
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
-      <div className="flex flex-col">
-        <input
-          onChange={handleUsername}
-          value={username}
-          type="text"
-          placeholder="Nombre de usuario"
-        />
-        <input
-          onChange={handlePassword}
-          value={password}
-          type="password"
-          placeholder="Contraseña"
-        />
-      </div>
-      <div>
-        <button onClick={handleLogin} disabled={isPending}>
-          Iniciar sesión
-        </button>
-        <button onClick={handleRegister} disabled={isPending}>
-          Registrarse
-        </button>
-      </div>
-      {isError && <span className='text-red-600 underline'>{error?.message}</span>}
-    </form>
+    <>
+      {display === 'register' && <Register displayLogin={displayLogin} />}
+      {display === 'login' && <Login displayRegister={displayRegister} />}
+    </>
   );
 }

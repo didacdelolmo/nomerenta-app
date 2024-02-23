@@ -10,7 +10,7 @@ import CreateComment from '../comment/CreateComment';
 import CommentComment from '../comment/CommentContent';
 import { Link } from 'react-router-dom';
 import Markdown from 'react-markdown';
-import useUserRoleClassColor from '../../hooks/user/use-user-role-class';
+import useUserRoleColorClass from '../../hooks/user/use-user-role-class';
 
 export default function PostContent({ post }: { post: Post }) {
   const {
@@ -23,8 +23,8 @@ export default function PostContent({ post }: { post: Post }) {
   } = post;
 
   const author = post.author as User;
-  const avatar = useUserAvatarURL({ user: author });
-  const { classColor } = useUserRoleClassColor({ user: author });
+  const { avatar } = useUserAvatarURL({ user: author });
+  const { roleColorClass } = useUserRoleColorClass({ user: author });
 
   const { hasUpvoted, hasDownvoted, handleUpvote, handleDownvote } =
     usePostVote({ post });
@@ -97,7 +97,7 @@ export default function PostContent({ post }: { post: Post }) {
                 <span>
                   Publicado por{' '}
                   <Link to={`/users/${author._id}`}>
-                    <span className={`${classColor} font-bold hover:underline`}>
+                    <span className={`${roleColorClass} font-bold hover:underline`}>
                       {author.username}
                     </span>
                   </Link>

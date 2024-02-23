@@ -8,16 +8,16 @@ import useToggler from '../../hooks/use-toggler';
 import useCommentVote from '../../hooks/comment/use-comment-vote';
 import { Link } from 'react-router-dom';
 import Markdown from 'react-markdown';
-import useUserRoleClassColor from '../../hooks/user/use-user-role-class';
+import useUserRoleColorClass from '../../hooks/user/use-user-role-class';
 
 export default function CommentContent({ comment }: { comment: Comment }) {
-  const { _id: parentId, content, score, replies, createdAt: date } = comment;
+  const { _id, content, score, replies, createdAt: date } = comment;
 
   const postId = comment.post as string;
   const author = comment.author as unknown as User;
 
-  const { classColor } = useUserRoleClassColor({ user: author });
-  const avatar = useUserAvatarURL({ user: author });
+  const { roleColorClass } = useUserRoleColorClass({ user: author });
+  const { avatar } = useUserAvatarURL({ user: author });
 
   const { isToggled, handleToggle } = useToggler();
 
@@ -25,7 +25,7 @@ export default function CommentContent({ comment }: { comment: Comment }) {
     useCommentVote({ comment });
 
   return (
-    <div className="flex gap-2">
+    <div id={_id} className="flex gap-2">
       <div className="flex flex-col">
         <Link to={`/users/${author._id}`}>
           <img height={48} width={48} src={avatar} alt="Avatar" />
@@ -38,13 +38,17 @@ export default function CommentContent({ comment }: { comment: Comment }) {
             <div className="flex flex-col">
               <Link
                 to={`/users/${author._id}`}
-                className={`${classColor}  font-bold hover:underline w-fit`}
+                className={`${roleColorClass}  font-bold hover:underline w-fit`}
               >
                 {author.username}
               </Link>
               <span>Hace {formatDistanceToNow(date, { locale: es })}</span>
             </div>
-            {author.flair && <span className="italic bg-gray-100 w-fit px-2 ">{author.flair}</span>}
+            {author.flair && (
+              <span className="italic bg-gray-100 w-fit px-2 ">
+                {author.flair}
+              </span>
+            )}
           </div>
           <p className="m-0 text-lg leading-6">
             {author.roleId !== 'member' ? (
@@ -126,7 +130,7 @@ export default function CommentContent({ comment }: { comment: Comment }) {
           <div className="flex-1">
             <CreateComment
               postId={postId}
-              parentId={parentId}
+              parentId={_id}
               onSuccessCallback={handleToggle}
             />
           </div>

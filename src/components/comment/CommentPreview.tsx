@@ -7,14 +7,14 @@ import useCommentVote from '../../hooks/comment/use-comment-vote';
 import { Link } from 'react-router-dom';
 import Post from '../../store/types/post-interface';
 import Markdown from 'react-markdown';
-import useUserRoleClassColor from '../../hooks/user/use-user-role-class';
+import useUserRoleColorClass from '../../hooks/user/use-user-role-class';
 
 export default function CommentPreview({ comment }: { comment: Comment }) {
   const { content, score, createdAt: date } = comment;
   const author = comment.author as unknown as User;
   const post = comment.post as Post;
-  const avatar = useUserAvatarURL({ user: author });
-  const { classColor } = useUserRoleClassColor({ user: author });
+  const { avatar } = useUserAvatarURL({ user: author });
+  const { roleColorClass } = useUserRoleColorClass({ user: author });
 
   const { hasUpvoted, hasDownvoted } = useCommentVote({ comment });
 
@@ -29,7 +29,7 @@ export default function CommentPreview({ comment }: { comment: Comment }) {
       <div className="flex flex-col gap-5 w-full">
         <div className="flex flex-col gap-2">
           <div className="flex flex-col my-2">
-            <span className={`${classColor} font-bold`}>{author.username}</span>
+            <span className={`${roleColorClass} font-bold`}>{author.username}</span>
             <span>Hace {formatDistanceToNow(date, { locale: es })}</span>
           </div>
           <div className="m-0 text-lg leading-6">

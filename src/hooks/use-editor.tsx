@@ -1,11 +1,8 @@
 import EasyMDE from 'easymde';
-import useUser from './user/use-user';
 import { useMemo } from 'react';
 
-export default function useEditor() {
-  const { isMember } = useUser();
-
-  const editorOptions: EasyMDE.Options = useMemo(() => {
+export default function useEditorOptions() {
+  const options: EasyMDE.Options = useMemo(() => {
     return {
       autofocus: true,
       spellChecker: false,
@@ -14,5 +11,5 @@ export default function useEditor() {
     };
   }, []);
 
-  return { isMember, editorOptions };
+  return { options };
 }

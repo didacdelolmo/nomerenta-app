@@ -23,14 +23,14 @@ export default function CreatePost() {
           onChange={handleTitle}
           value={title}
           placeholder="la navidad"
-          className="text-4xl flex-1 min-w-0 w-full text-center md:text-start md:px-2"
+          className="box-border text-4xl flex-1 min-w-0 w-full text-center md:text-start md:px-2"
           type="text"
           required
         />
       </div>
       <div className="flex flex-col gap-2">
         <Editor
-          placeholder={`No me renta ${title ? title : 'la navidad'}`}
+          placeholder="Desahogate sin miedo..."
           content={content}
           handleContent={handleContent}
           handleMarkdown={handleMarkdown}

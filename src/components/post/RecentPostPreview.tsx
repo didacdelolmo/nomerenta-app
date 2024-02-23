@@ -1,11 +1,12 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useUserAvatarURL from '../../hooks/user/use-user-avatar-url';
 import Post from '../../store/types/post-interface';
 import User from '../../store/types/user-interface';
-import { format } from 'date-fns';
+import { formatDistanceToNow } from 'date-fns';
 import usePostVote from '../../hooks/post/use-post-vote';
 import Markdown from 'react-markdown';
-import useUserRoleClassColor from '../../hooks/user/use-user-role-class';
+import useUserRoleColorClass from '../../hooks/user/use-user-role-class';
+import { es } from 'date-fns/locale';
 
 export default function RecentPostPreview({ post }: { post: Post }) {
   const {
@@ -17,13 +18,13 @@ export default function RecentPostPreview({ post }: { post: Post }) {
     commentsCount: commentCount,
   } = post;
   const author = post.author as User;
-  const avatar = useUserAvatarURL({ user: author });
-  const { classColor } = useUserRoleClassColor({ user: author });
-  const shownContent =
-    content.length > 20 ? `${content.substring(0, 64)}...` : content;
+  const { avatar } = useUserAvatarURL({ user: author });
+  const { roleColorClass } = useUserRoleColorClass({ user: author });
 
   const { hasUpvoted, hasDownvoted, handleUpvote, handleDownvote } =
     usePostVote({ post });
+
+  const navigate = useNavigate();
 
   return (
     <Link
@@ -73,23 +74,29 @@ export default function RecentPostPreview({ post }: { post: Post }) {
       </div>
       <div className="flex flex-col flex-grow min-w-0 justify-between">
         <h2 className="m-0">No me renta {title}</h2>
-        <div className="m-0 break-words">
+        <div className="m-0 break-words line-clamp-2">
           {author.roleId !== 'member' ? (
-            <Markdown>
-              {shownContent}
-            </Markdown>
+            <Markdown>{content}</Markdown>
           ) : (
-            shownContent
+            content
           )}
         </div>
       </div>
       <div className="flex flex-col flex-shrink-0 items-end justify-between gap-2">
         <div className="flex flex-col items-end">
           <div className="flex gap-1">
-            <span className={`${classColor} font-bold`}>{author.username}</span>
+            <span
+              onClick={(e) => {
+                e.preventDefault();
+                navigate(`/users/${author._id}`);
+              }}
+              className={`${roleColorClass} font-bold hover:underline`}
+            >
+              {author.username}
+            </span>
             <img height={24} width={24} src={avatar} alt="Avatar" />
           </div>
-          <span>{format(date, 'dd/MM/yyyy')}</span>
+          <span>Hace {formatDistanceToNow(date, { locale: es })}</span>
         </div>
         <div className="flex items-end">
           <svg

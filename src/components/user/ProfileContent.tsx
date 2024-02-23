@@ -1,23 +1,22 @@
 import { useState } from 'react';
 import useProfileState from '../../hooks/user/use-profile-state';
-import useUser from '../../hooks/user/use-user';
 import useUserAvatarURL from '../../hooks/user/use-user-avatar-url';
-import useUserRoleClassColor from '../../hooks/user/use-user-role-class';
+import useUserRoleColorClass from '../../hooks/user/use-user-role-class';
 import User from '../../store/types/user-interface';
 import ChangeAvatar from './ChangeAvatar';
 import ProfileComments from './ProfileComments';
 import ProfilePosts from './ProfilePosts';
 import SetFlair from './SetFlair';
 import SetBiography from './SetBiography';
+import useUserStore from '../../store/user-store';
 
 export default function ProfileContent({ user }: { user: User }) {
   const [canEdit, setCanEdit] = useState(false);
+  const currentUser = useUserStore((state) => state.user);
 
-  const { isCurrentUser, isAdmin, isBoss } = useUser();
-  const { classColor } = useUserRoleClassColor({ user });
-
-  const { username, roleId, biography, flair } = user;
-  const avatar = useUserAvatarURL({ user });
+  const { username, roleId, flair, biography } = user;
+  const { avatar } = useUserAvatarURL({ user });
+  const { roleColorClass } = useUserRoleColorClass({ user });
 
   const {
     isPostsSection,
@@ -32,7 +31,7 @@ export default function ProfileContent({ user }: { user: User }) {
         <div className="flex gap-2">
           <img height={75} width={75} src={avatar} alt="Avatar" />
           <div className="flex flex-col">
-            <span className={`${classColor} font-bold text-2xl`}>
+            <span className={`${roleColorClass} font-bold text-2xl`}>
               {username}
             </span>
             {roleId === 'premium' && (
@@ -40,23 +39,25 @@ export default function ProfileContent({ user }: { user: User }) {
                 Premium
               </div>
             )}
-            {roleId === 'admin' && (
+            {roleId === 'editor' && (
               <div className="bg-red-600 w-fit text-white font-bold text-sm px-2">
                 Administrador
               </div>
             )}
-            {roleId === 'boss' && (
+            {roleId === 'professor' && (
               <div className="bg-purple-600 w-fit text-white font-bold text-sm px-2">
                 El Jefe
               </div>
             )}
-            {flair && <span className="text-lg italic leading-5 my-1">{flair}</span>}
+            {flair && (
+              <span className="text-lg italic leading-5 my-1">{flair}</span>
+            )}
           </div>
         </div>
-        {isCurrentUser(user) && <ChangeAvatar />}
+        {currentUser?._id === user._id && <ChangeAvatar />}
         {biography && <p>{biography}</p>}
       </div>
-      {(isAdmin || isBoss) && (
+      {currentUser?.roleId === 'editor' && (
         <div className="flex flex-col">
           <span
             onClick={() => setCanEdit(!canEdit)}

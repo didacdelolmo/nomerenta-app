@@ -7,7 +7,7 @@ axios.interceptors.response.use(undefined, (error) => {
   if (error?.response?.data?.message) {
     throw new Error(error.response.data.message);
   } else {
-    throw new Error(`Something bad happened! ${error.message}`);
+    throw new Error(`Ha ocurrido un error: ${error.message}`);
   }
 });
 

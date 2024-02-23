@@ -18,7 +18,7 @@ export default function NotificationList() {
     if (isSuccess) {
       mutate();
     }
-  }, [isSuccess]);
+  }, [isSuccess, mutate]);
 
   return (
     <>

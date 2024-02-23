@@ -1,9 +1,14 @@
 import { useCallback, useEffect, useState } from 'react';
 
-export default function usePostTimer({ content, setTitle, setContent, handleSubmit }) {
+export default function usePostTimer({
+  content,
+  setTitle,
+  setContent,
+  handleSubmit,
+}) {
   const [timeLeft, setTimeLeft] = useState(75);
   const [isTicking, setIsTicking] = useState(false);
-  // const [message, setMessage] = useState('');
+  const [message, setMessage] = useState('');
   const [stage, setStage] = useState(1);
 
   useEffect(() => {
@@ -16,17 +21,17 @@ export default function usePostTimer({ content, setTitle, setContent, handleSubm
     if (timeLeft === 1) {
       if (stage === 1) {
         // executeFunctionA();
-        setMessage('')
+        setMessage('');
         setTimeLeft(30);
         setStage(2);
       } else if (stage === 2) {
         // executeFunctionB();
-        setMessage('')
+        setMessage('');
         setTimeLeft(15);
         setStage(3);
       } else if (stage === 3) {
         // executeFunctionC();
-        setMessage('')
+        setMessage('');
         setIsTicking(false);
       }
     }
@@ -39,6 +44,7 @@ export default function usePostTimer({ content, setTitle, setContent, handleSubm
   const resetTimer = useCallback(() => setTimeLeft(120), []);
 
   return {
+    message,
     timeLeft,
     startTimer,
     stopTimer,

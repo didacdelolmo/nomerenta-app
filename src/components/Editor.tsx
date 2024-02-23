@@ -1,6 +1,7 @@
 import { SimpleMdeReact } from 'react-simplemde-editor';
 import 'easymde/dist/easymde.min.css';
-import useEditor from '../hooks/use-editor';
+import useEditorOptions from '../hooks/use-editor';
+import useUserStore from '../store/user-store';
 
 export default function Editor({
   placeholder,
@@ -8,15 +9,16 @@ export default function Editor({
   handleContent,
   handleMarkdown,
 }) {
-  const { isMember, editorOptions } = useEditor();
+  const user = useUserStore((state) => state.user);
+  const { options } = useEditorOptions();
 
   return (
     <>
-      {!isMember ? (
+      {user?.roleId === 'member' ? (
         <SimpleMdeReact
           onChange={handleMarkdown}
           value={content}
-          options={editorOptions}
+          options={options}
           className="text-lg"
           placeholder={placeholder}
         />

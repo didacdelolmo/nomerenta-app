@@ -5,7 +5,7 @@ export default function useUserAvatarURL({ user }: { user: User | null }) {
   const { VITE_REST_API_URL } = import.meta.env;
 
   if (user && user.avatar) {
-    return `${VITE_REST_API_URL}/avatars/${user.avatar}`;
+    return { avatar: `${VITE_REST_API_URL}/avatars/${user.avatar}` };
   }
-  return defaultAvatar;
+  return { avatar: defaultAvatar };
 }

@@ -10,6 +10,7 @@ interface Comment {
   upvotes: string[] | User[];
   downvotes: string[] | User[];
   score: number;
+  format: boolean;
   replies: Comment[];
   createdAt: Date;
 }
