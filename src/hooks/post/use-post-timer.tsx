@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useState } from 'react';
 
-export default function usePostTimer({
-  content,
-  setTitle,
-  setContent,
-  handleSubmit,
-}) {
+export default function usePostTimer(
+//   {
+//   content,
+//   setTitle,
+//   setContent,
+//   handleSubmit,
+// }
+) {
   const [timeLeft, setTimeLeft] = useState(75);
   const [isTicking, setIsTicking] = useState(false);
   const [message, setMessage] = useState('');
