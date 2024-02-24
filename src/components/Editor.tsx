@@ -14,7 +14,7 @@ export default function Editor({
 
   return (
     <>
-      {user?.roleId === 'member' ? (
+      {user?.roleId !== 'member' ? (
         <SimpleMdeReact
           onChange={handleMarkdown}
           value={content}
