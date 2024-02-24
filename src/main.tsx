@@ -9,6 +9,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App.tsx';
 import './index.css';
 import { AudioProvider } from './context/audio-context.tsx';
+import { CounterProvider } from './context/counter-context.tsx';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -30,7 +31,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <AudioProvider>
-          <App />
+          <CounterProvider>
+            <App />
+          </CounterProvider>
         </AudioProvider>
       </BrowserRouter>
     </QueryClientProvider>

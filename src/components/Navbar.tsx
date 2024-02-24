@@ -62,7 +62,7 @@ export default function Navbar() {
                   />
                 </svg>
                 {response.data >= 1 && (
-                  <div className="absolute bg-red-600 w-3 h-3 rounded-full bottom-[16px] left-[10px]"></div>
+                  <div className="absolute bg-red-600 w-3 h-3 rounded-full bottom-[16px] left-[16px]"></div>
                 )}
                 {/* <div className="absolute animate-ping bg-red-600 w-3 h-3 rounded-full bottom-[16px] left-[10px]"></div> */}
               </Link>
