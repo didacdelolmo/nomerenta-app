@@ -72,7 +72,7 @@ export default function RecentPostPreview({ post }: { post: Post }) {
           </svg>
         </div>
       </div>
-      <div className="flex flex-col md:flex-row justify-between w-full gap-2 md:gap-0">
+      <div className="flex flex-col md:flex-row justify-between w-full gap-2">
         <div className="flex flex-col flex-grow min-w-0 justify-between">
           <h2 className="m-0 tracking-tight">No me renta {title}</h2>
           <div className="m-0 break-words line-clamp-2">
@@ -85,7 +85,7 @@ export default function RecentPostPreview({ post }: { post: Post }) {
         </div>
         <div className="order-first md:order-last self-start flex flex-col flex-shrink-0 items-end justify-between gap-1 md:gap-5">
           <div className="flex flex-col items-start md:items-end justify-between">
-            <div className="flex gap-1 items-center">
+            <div className="flex gap-2 items-center">
               <span
                 onClick={(e) => {
                   e.preventDefault();

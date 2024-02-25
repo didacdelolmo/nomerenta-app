@@ -60,27 +60,27 @@ export default function ProfileContent({ user }: { user: User }) {
               )}
               {roleId === 'judge' && (
                 <div className="bg-teal-600 w-fit text-white font-bold text-sm px-2">
-                  Administrador
+                  Juez
                 </div>
               )}
               {roleId === 'police_officer' && (
                 <div className="bg-blue-600 w-fit text-white font-bold text-sm px-2">
-                  Administrador
+                  Policía
                 </div>
               )}
               {roleId === 'professor' && (
                 <div className="bg-purple-600 w-fit text-white font-bold text-sm px-2">
-                  El Jefe
+                  Profesor
                 </div>
               )}
               {roleId === 'dealer' && (
                 <div className="bg-lime-600 w-fit text-white font-bold text-sm px-2">
-                  El Jefe
+                  Traficante
                 </div>
               )}
               {roleId === 'dictator' && (
                 <div className="bg-red-600 w-fit text-white font-bold text-sm px-2">
-                  El Jefe
+                  Dictador
                 </div>
               )}
             </div>
