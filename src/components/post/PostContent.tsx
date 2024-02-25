@@ -114,7 +114,7 @@ export default function PostContent({ post }: { post: Post }) {
             )}
           </div>
           <div className="flex flex-col gap-5">
-            <h2 className="m-0">No me renta {title}</h2>
+            <h2 className="m-0 tracking-tight">No me renta {title}</h2>
             <p className="m-0 text-lg">
               {author.roleId !== 'member' ? (
                 <Markdown>{content}</Markdown>
@@ -174,16 +174,17 @@ export default function PostContent({ post }: { post: Post }) {
       </div>
       <div className="flex flex-col gap-5 outline outline-1 outline-gray-500 p-2">
         <CreateComment postId={_id} />
-        <div className="overflow-auto flex flex-col gap-5">
-          {isPending && <span>Cargando comentarios...</span>}
-          {isError && (
-            <span className="text-red-600 underline">{error?.message}</span>
-          )}
-          {isSuccess &&
-            response.data.map((comment, index) => (
+        {isPending && <span>Cargando comentarios...</span>}
+        {isError && (
+          <span className="text-red-600 underline">{error?.message}</span>
+        )}
+        {(isSuccess && response.data.length) >= 1 && (
+          <div className="overflow-auto flex flex-col gap-5">
+            {response?.data.map((comment, index) => (
               <CommentComment key={index} comment={comment} />
             ))}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );

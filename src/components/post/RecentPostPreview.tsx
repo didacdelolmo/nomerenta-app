@@ -29,7 +29,7 @@ export default function RecentPostPreview({ post }: { post: Post }) {
   return (
     <Link
       to={`/posts/${_id}`}
-      className="flex justify-between gap-5 outline outline-1 outline-gray-500 p-2 hover:bg-gray-50 hover:cursor-pointer"
+      className="flex gap-5 outline outline-1 outline-gray-500 p-2 hover:bg-gray-50 hover:cursor-pointer"
     >
       <div className="flex flex-col items-center">
         <div
@@ -72,48 +72,50 @@ export default function RecentPostPreview({ post }: { post: Post }) {
           </svg>
         </div>
       </div>
-      <div className="flex flex-col flex-grow min-w-0 justify-between">
-        <h2 className="m-0">No me renta {title}</h2>
-        <div className="m-0 break-words line-clamp-2">
-          {author.roleId !== 'member' ? (
-            <Markdown>{content}</Markdown>
-          ) : (
-            content
-          )}
-        </div>
-      </div>
-      <div className="flex flex-col flex-shrink-0 items-end justify-between gap-2">
-        <div className="flex flex-col items-end">
-          <div className="flex gap-1 items-center">
-            <span
-              onClick={(e) => {
-                e.preventDefault();
-                navigate(`/users/${author._id}`);
-              }}
-              className={`${roleColorClass} font-bold hover:underline`}
-            >
-              {author.username}
-            </span>
-            <img height={32} width={32} src={avatar} alt="Avatar" />
+      <div className="flex flex-col md:flex-row justify-between w-full gap-2 md:gap-0">
+        <div className="flex flex-col flex-grow min-w-0 justify-between">
+          <h2 className="m-0 tracking-tight">No me renta {title}</h2>
+          <div className="m-0 break-words line-clamp-2">
+            {author.roleId !== 'member' ? (
+              <Markdown>{content}</Markdown>
+            ) : (
+              content
+            )}
           </div>
-          <span>Hace {formatDistanceToNow(date, { locale: es })}</span>
         </div>
-        <div className="flex items-end">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-4 h-4"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z"
-            />
-          </svg>
-          <span className="leading-none">{commentCount}</span>
+        <div className="order-first md:order-last self-start flex flex-col flex-shrink-0 items-end justify-between gap-1 md:gap-5">
+          <div className="flex flex-col items-start md:items-end justify-between">
+            <div className="flex gap-1 items-center">
+              <span
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate(`/users/${author._id}`);
+                }}
+                className={`${roleColorClass} font-bold hover:underline order-last md:order-first`}
+              >
+                {author.username}
+              </span>
+              <img height={32} width={32} src={avatar} alt="Avatar" />
+            </div>
+            <span>Hace {formatDistanceToNow(date, { locale: es })}</span>
+          </div>
+          <div className="flex items-end self-start md:self-end">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-4 h-4"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z"
+              />
+            </svg>
+            <span className="leading-none">{commentCount}</span>
+          </div>
         </div>
       </div>
     </Link>

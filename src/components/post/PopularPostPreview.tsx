@@ -57,7 +57,7 @@ export default function PopularPostPreview({ post }: { post: Post }) {
           <img height={32} width={32} src={avatar} alt="Avatar" />
           <span className={`${roleColorClass} font-bold`}>{author.username}</span>
         </div>
-        <span className="text-xl">No me renta {post.title}</span>
+        <span className="text-xl leading-tight">No me renta {post.title}</span>
       </div>
     </Link>
   );
