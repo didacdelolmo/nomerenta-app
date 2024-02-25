@@ -84,7 +84,7 @@ export default function RecentPostPreview({ post }: { post: Post }) {
       </div>
       <div className="flex flex-col flex-shrink-0 items-end justify-between gap-2">
         <div className="flex flex-col items-end">
-          <div className="flex gap-1">
+          <div className="flex gap-1 items-center">
             <span
               onClick={(e) => {
                 e.preventDefault();
@@ -94,7 +94,7 @@ export default function RecentPostPreview({ post }: { post: Post }) {
             >
               {author.username}
             </span>
-            <img height={24} width={24} src={avatar} alt="Avatar" />
+            <img height={32} width={32} src={avatar} alt="Avatar" />
           </div>
           <span>Hace {formatDistanceToNow(date, { locale: es })}</span>
         </div>
