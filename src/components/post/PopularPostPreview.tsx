@@ -15,7 +15,7 @@ export default function PopularPostPreview({ post }: { post: Post }) {
   return (
     <Link
       to={`/posts/${post._id}`}
-      className="p-2 flex items-center gap-2 outline outline-1 outline-gray-500 hover:cursor-pointer hover:bg-gray-50 break-all"
+      className="p-2 flex items-center gap-3 outline outline-1 outline-gray-500 hover:cursor-pointer hover:bg-gray-50 break-all"
     >
       <div className="flex flex-col items-center">
         <div className={`${hasUpvoted && 'text-blue-600'} flex`}>
@@ -53,8 +53,8 @@ export default function PopularPostPreview({ post }: { post: Post }) {
         </div>
       </div>
       <div className="flex flex-col items-center">
-        <div className="flex items-center gap-1 self-start">
-          <img height={24} width={24} src={avatar} alt="Avatar" />
+        <div className="flex items-center gap-2 self-start text-lg">
+          <img height={32} width={32} src={avatar} alt="Avatar" />
           <span className={`${roleColorClass} font-bold`}>{author.username}</span>
         </div>
         <span className="text-xl">No me renta {post.title}</span>
