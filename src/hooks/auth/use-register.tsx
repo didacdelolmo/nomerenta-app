@@ -9,8 +9,13 @@ export default function useRegister({
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [code, setCode] = useState(invitationCode);
+  const [visiblePassword, setVisiblePassword] = useState(false);
 
   const mutation = useRegisterMutation();
+
+  const toggleVisiblePassword = () => {
+    setVisiblePassword(!visiblePassword);
+  };
 
   const handleUsername = (e) => {
     setUsername(e.target.value);
@@ -30,6 +35,8 @@ export default function useRegister({
     username,
     password,
     code,
+    visiblePassword,
+    toggleVisiblePassword,
     handleUsername,
     handlePassword,
     handleCode,

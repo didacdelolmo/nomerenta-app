@@ -28,7 +28,7 @@ export default function CommentPreview({ comment }: { comment: Comment }) {
       </div>
       <div className="flex flex-col gap-5 w-full">
         <div className="flex flex-col gap-2">
-          <div className="flex flex-col my-2">
+          <div className="flex flex-col">
             <span className={`${roleColorClass} font-bold`}>{author.username}</span>
             <span>Hace {formatDistanceToNow(date, { locale: es })}</span>
           </div>

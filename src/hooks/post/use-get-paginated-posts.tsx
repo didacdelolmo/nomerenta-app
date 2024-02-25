@@ -7,7 +7,7 @@ export default function useGetRecentPaginatedPosts() {
   const [posts, setPosts] = useState<Post[]>([]);
   const [hasMore, setHasMore] = useState(true);
 
-  const limit = 20;
+  const limit = 3;
 
   const {
     data: response,

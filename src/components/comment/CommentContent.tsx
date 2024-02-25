@@ -33,8 +33,8 @@ export default function CommentContent({ comment }: { comment: Comment }) {
         <hr className="h-full" />
       </div>
       <div className="flex flex-col gap-5 w-full">
-        <div className="flex flex-col gap-2 mt-2">
-          <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-2">
+          <div className="flex flex-col">
             <div className="flex flex-col">
               <Link
                 to={`/users/${author._id}`}
@@ -44,12 +44,12 @@ export default function CommentContent({ comment }: { comment: Comment }) {
               </Link>
               <span>Hace {formatDistanceToNow(date, { locale: es })}</span>
             </div>
-            {author.flair && (
-              <span className="italic bg-gray-100 w-fit px-2 ">
-                {author.flair}
-              </span>
-            )}
           </div>
+          {author.flair && (
+            <span className="italic bg-gray-100 w-fit px-2 ">
+              {author.flair}
+            </span>
+          )}
           <p className="m-0 text-lg leading-6">
             {author.roleId !== 'member' ? (
               <Markdown>{content}</Markdown>

@@ -1,6 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { fetchFollow } from '../../api';
-import User from '../../../store/types/user-interface';
 
 export default function useFollowMutation() {
   const queryClient = useQueryClient();
@@ -8,11 +7,12 @@ export default function useFollowMutation() {
   return useMutation({
     mutationFn: fetchFollow,
 
-    onSuccess: (data) => {
-      const user: User = data.data;
-
+    onSuccess: (_data, variables) => {
       queryClient.invalidateQueries({
-        queryKey: ['get-user-follows', user._id],
+        queryKey: ['get-user', variables.userId]
+      })
+      queryClient.invalidateQueries({
+        queryKey: ['get-user-follows', variables.userId],
       });
     },
   });

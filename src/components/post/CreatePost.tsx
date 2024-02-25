@@ -23,7 +23,7 @@ export default function CreatePost() {
         <input
           onChange={handleTitle}
           value={title}
-          placeholder="la navidad"
+          placeholder="salir de fiesta"
           className="box-border text-4xl flex-1 min-w-0 w-full text-center md:text-start md:px-2"
           type="text"
           required
@@ -31,7 +31,7 @@ export default function CreatePost() {
       </div>
       <div className="flex flex-col gap-2">
         <Editor
-          placeholder="Desahogate sin miedo..."
+          placeholder="No te contengas..."
           content={content}
           handleContent={handleContent}
           handleMarkdown={handleMarkdown}

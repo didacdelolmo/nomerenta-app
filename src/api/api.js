@@ -64,11 +64,11 @@ export const fetchUserFollowers = ({ userId }) => {
 };
 
 export const fetchFollow = ({ userId }) => {
-  return axios.post(`/users/${userId}/follow`, { withCredentials: true });
+  return axios.post(`/users/${userId}/follow`, {}, { withCredentials: true });
 };
 
 export const fetchUnfollow = ({ userId }) => {
-  return axios.post(`/users/${userId}/unfollow`, { withCredentials: true });
+  return axios.post(`/users/${userId}/unfollow`, {}, { withCredentials: true });
 };
 
 export const fetchSetOutsiderBiography = ({ userId, biography }) => {

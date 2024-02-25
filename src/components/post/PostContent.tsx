@@ -88,25 +88,30 @@ export default function PostContent({ post }: { post: Post }) {
           </div>
         </div>
         <div className="flex flex-col gap-5">
-          <div className="flex gap-2">
-            <Link to={`/users/${author._id}`}>
-              <img height={48} width={48} src={avatar} alt="Avatar" />
-            </Link>
-            <div className="flex flex-col justify-evenly">
-              <div className="flex gap-2">
+          <div className="flex flex-col gap-1">
+            <div className="flex gap-2">
+              <Link to={`/users/${author._id}`}>
+                <img height={48} width={48} src={avatar} alt="Avatar" />
+              </Link>
+              <div className="flex flex-col justify-evenly">
                 <span>
                   Publicado por{' '}
                   <Link to={`/users/${author._id}`}>
-                    <span className={`${roleColorClass} font-bold hover:underline`}>
+                    <span
+                      className={`${roleColorClass} font-bold hover:underline`}
+                    >
                       {author.username}
                     </span>
                   </Link>
                 </span>
-                <span>•</span>
                 <span>Hace {formatDistanceToNow(date, { locale: es })}</span>
               </div>
-              {author.flair && <span className='italic bg-gray-100 px-2 w-fit'>{author.flair}</span>}
             </div>
+            {author.flair && (
+              <span className="italic bg-gray-100 px-2 w-fit">
+                {author.flair}
+              </span>
+            )}
           </div>
           <div className="flex flex-col gap-5">
             <h2 className="m-0">No me renta {title}</h2>
