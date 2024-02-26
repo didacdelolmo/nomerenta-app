@@ -8,7 +8,7 @@ export default function UnfollowButton({ target }: { target: User }) {
     <div className="flex flex-col">
       <button
         onClick={() => unfollow({ userId: target._id })}
-        className="w-full"
+        className="w-full bg-gray-100 px-2 rounded-md border border-gray-600 hover:bg-gray-200"
       >
         Dejar de seguir
       </button>
