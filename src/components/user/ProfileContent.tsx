@@ -11,9 +11,13 @@ import SetBiography from './SetBiography';
 import useUserStore from '../../store/user-store';
 import FollowButton from './FollowButton';
 import UnfollowButton from './UnfollowButton';
+import ProfileFollows from './ProfileFollows';
+import UserInvitations from './UserInvitations';
 
 export default function ProfileContent({ user }: { user: User }) {
   const [canEdit, setCanEdit] = useState(false);
+  const [showInvitations, setShowInvitations] = useState(false);
+
   const currentUser = useUserStore((state) => state.user);
 
   const { _id, username, roleId, flair, biography, followers } = user;
@@ -23,18 +27,17 @@ export default function ProfileContent({ user }: { user: User }) {
   const {
     isPostsSection,
     isCommentsSection,
+    isFollowsSection,
     setPostsSection,
     setCommentsSection,
+    setFollowsSection,
   } = useProfileState();
 
   return (
     <div className="relative flex flex-col outline outline-1 outline-gray-500 gap-5">
       {(!currentUser || currentUser?.roleId === 'member') && (
         <button className="lg:hidden absolute right-0 m-2 bg-yellow-600 px-2 text-white font-semibold rounded-md hover:bg-yellow-500">
-          <a
-            href="https://buy.stripe.com/9AQg08e7bc312haaEF"
-            target="_blank"
-          >
+          <a href="https://buy.stripe.com/9AQg08e7bc312haaEF" target="_blank">
             Comprar PREMIUM
           </a>
         </button>
@@ -111,11 +114,25 @@ export default function ProfileContent({ user }: { user: User }) {
         </div>
         {biography && (
           <div>
-            <span className='font-bold text-lg'>Sobre mí</span>
+            <span className="font-bold text-lg">Sobre mí</span>
             <p className="text-gray-800">{biography}</p>
           </div>
         )}
       </div>
+      {currentUser?._id === _id && (
+        <div className="flex flex-col">
+          <span
+            onClick={() => {
+              setShowInvitations(!showInvitations);
+            }}
+            className="text-xl font-bold px-2 pb-2 hover:underline hover:cursor-pointer w-fit"
+          >
+            Obtener invitaciones
+          </span>
+          {showInvitations && <UserInvitations />}
+          <hr className='border-gray-600' />
+        </div>
+      )}
       {currentUser?.roleId === 'editor' && (
         <div className="flex flex-col">
           <span
@@ -137,20 +154,35 @@ export default function ProfileContent({ user }: { user: User }) {
         <div className="flex gap-2 text-xl font-bold px-2 pb-2">
           <span
             onClick={setPostsSection}
-            className={`${isPostsSection && 'bg-gray-200'} px-2 rounded-md hover:bg-gray-200 hover:cursor-pointer text-2xl`}
+            className={`${
+              isPostsSection && 'bg-gray-200'
+            } px-2 rounded-md hover:bg-gray-200 hover:cursor-pointer text-2xl`}
           >
             Publicaciones
           </span>
           <span
             onClick={setCommentsSection}
-            className={`${isCommentsSection && 'bg-gray-200'} px-2 rounded-md hover:bg-gray-200 hover:cursor-pointer text-2xl`}
+            className={`${
+              isCommentsSection && 'bg-gray-200'
+            } px-2 rounded-md hover:bg-gray-200 hover:cursor-pointer text-2xl`}
           >
             Comentarios
           </span>
+          {currentUser?._id === _id && (
+            <span
+              onClick={setFollowsSection}
+              className={`${
+                isFollowsSection && 'bg-gray-200'
+              } px-2 rounded-md hover:bg-gray-200 hover:cursor-pointer text-2xl`}
+            >
+              Siguiendo
+            </span>
+          )}
         </div>
-          <hr className='border-gray-600' />
+        <hr className="border-gray-600" />
         {isPostsSection && <ProfilePosts user={user} />}
         {isCommentsSection && <ProfileComments user={user} />}
+        {isFollowsSection && <ProfileFollows user={user} />}
       </div>
     </div>
   );

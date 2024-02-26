@@ -14,6 +14,7 @@ enum Role {
 interface User {
   _id: string;
   username: string;
+  email: string | null;
   avatar: string | null;
   roleId: Role;
   flair: string | null;

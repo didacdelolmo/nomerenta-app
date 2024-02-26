@@ -25,7 +25,7 @@ export default function CommentContent({ comment }: { comment: Comment }) {
     useCommentVote({ comment });
 
   return (
-    <div id={_id} className="flex gap-2">
+    <div id={_id} className="flex gap-2 break-smart">
       <div className="flex flex-col items-center gap-2">
         <Link to={`/users/${author._id}`}>
           <img className='rounded-full' height={48} width={48} src={avatar} alt="Avatar" />

@@ -1,13 +1,13 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { fetchMarkCurrentUserNotificationsAsSeen } from '../../api';
+import { fetchMarkCurrentUserNotificationAsSeen } from '../../api';
 
-export default function useMarkCurrentUserNotificationsAsSeen() {
+export default function useMarkCurrentUserNotificationAsSeen() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: fetchMarkCurrentUserNotificationsAsSeen,
+    mutationFn: fetchMarkCurrentUserNotificationAsSeen,
 
-    onSuccess: () => {
+    onSuccess: () => {  
       queryClient.invalidateQueries({
         queryKey: ['get-current-user-notifications'],
       });

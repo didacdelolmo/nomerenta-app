@@ -11,7 +11,7 @@ export default function ProfilePreview({ user }: { user: User }) {
   return (
     <Link
       to={`/users/${_id}`}
-      className="outline outline-1 outline-gray-600 p-2 hover:cursor-pointer hover:bg-gray-50"
+      className="p-2 hover:cursor-pointer hover:bg-gray-100"
     >
       <div className='flex gap-2'>
         <img width={48} height={48} src={avatar} />

@@ -29,7 +29,7 @@ export default function RecentPostPreview({ post }: { post: Post }) {
   return (
     <Link
       to={`/posts/${_id}`}
-      className="flex gap-5 p-2 hover:bg-gray-50 hover:cursor-pointer"
+      className="flex gap-5 p-2 hover:bg-gray-100 hover:cursor-pointer break-smart"
     >
       <div className="flex flex-col items-center">
         <div
@@ -77,7 +77,7 @@ export default function RecentPostPreview({ post }: { post: Post }) {
           <h2 className="m-0 tracking-tight leading-tight text-2xl font-bold">
             No me renta {title}
           </h2>
-          <div className="m-0 break-all line-clamp-2 text-gray-800">
+          <div className="m-0 line-clamp-2 text-gray-800">
             {author.roleId !== 'member' ? (
               <Markdown>{content}</Markdown>
             ) : (

@@ -40,7 +40,7 @@ export default function PostContent({ post }: { post: Post }) {
   const { hasCopied, copyCurrentURL } = useClipboard();
 
   return (
-    <div className="flex flex-col divide-y divide-gray-600 border-l border-b border-gray-600">
+    <div className="flex flex-col divide-y divide-gray-600 border-l border-b border-gray-600 break-smart">
       <div className="flex gap-5 p-2">
         <div className="flex flex-col items-center">
           <div
@@ -87,7 +87,7 @@ export default function PostContent({ post }: { post: Post }) {
             </svg>
           </div>
         </div>
-        <div className="flex flex-col gap-5 break-all">
+        <div className="flex flex-col gap-5">
           <div className="flex flex-col gap-1">
             <div className="flex gap-2">
               <Link to={`/users/${author._id}`}>

@@ -8,7 +8,7 @@ export default function useCreateCurrentUserInvitationsMutation() {
     mutationFn: fetchCreateCurrentUserInvitations,
 
     onSuccess: () => {
-      queryClient.invalidateQueries({
+      queryClient.refetchQueries({
         queryKey: ['get-current-user-invitations'],
       });
     },

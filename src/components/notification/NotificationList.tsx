@@ -1,6 +1,4 @@
-import { useEffect } from 'react';
 import useGetCurrentUserNotificationsQuery from '../../api/queries/notification/use-get-current-user-notifications-query';
-import useMarkCurrentUserNotificationsAsSeen from '../../api/mutations/notification/use-mark-current-user-notifications-as-seen-mutation';
 import NotificationPreview from './NotificationPreview';
 
 export default function NotificationList() {
@@ -12,28 +10,21 @@ export default function NotificationList() {
     isSuccess,
   } = useGetCurrentUserNotificationsQuery();
 
-  const { mutate } = useMarkCurrentUserNotificationsAsSeen();
-
-  useEffect(() => {
-    if (isSuccess) {
-      mutate();
-    }
-  }, [isSuccess, mutate]);
-
   return (
     <>
-      <div className="flex flex-col outline outline-1 outline-gray-600 p-2">
-        <h2>Notificaciones</h2>
-        <div className="flex flex-col gap-2">
-          {isPending && <span>Cargando...</span>}
-          {isError && (
-            <span className="text-red-600 underline">{error.message}</span>
-          )}
-          {isSuccess &&
-            response?.data.map((notification, index) => (
+      <div className="flex flex-col">
+        <h2 className="p-2 text-2xl font-bold">Notificaciones</h2>
+        {isPending && <span>Cargando...</span>}
+        {isError && (
+          <span className="text-red-600 underline">{error.message}</span>
+        )}
+        {isSuccess && (
+          <div className="divide-y divide-gray-600">
+            {response?.data.map((notification, index) => (
               <NotificationPreview key={index} notification={notification} />
             ))}
-        </div>
+          </div>
+        )}
       </div>
     </>
   );

@@ -15,7 +15,7 @@ export default function PopularPostPreview({ post }: { post: Post }) {
   return (
     <Link
       to={`/posts/${post._id}`}
-      className="p-2 flex items-center gap-3 border border-gray-600 hover:cursor-pointer hover:bg-gray-50 break-all rounded-md"
+      className="p-2 flex items-center gap-3 border border-gray-600 hover:cursor-pointer hover:bg-gray-100 rounded-md break-smart"
     >
       <div className="flex flex-col items-center">
         <div className={`${hasUpvoted && 'text-blue-600'} flex`}>

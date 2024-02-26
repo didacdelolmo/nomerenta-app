@@ -223,6 +223,14 @@ export const fetchCurrentUserUnseenNotificationsCount = () => {
   });
 };
 
+export const fetchMarkCurrentUserNotificationAsSeen = ({ notificationId }) => {
+  return axios.patch(
+    `/users/me/notifications/${notificationId}/seen`,
+    {},
+    { withCredentials: true }
+  );
+};
+
 export const fetchMarkCurrentUserNotificationsAsSeen = () => {
   return axios.patch(
     '/users/me/notifications/seen',

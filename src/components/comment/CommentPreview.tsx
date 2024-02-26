@@ -21,7 +21,7 @@ export default function CommentPreview({ comment }: { comment: Comment }) {
   return (
     <Link
       to={`/posts/${post._id}`}
-      className="flex gap-2 p-2 hover:bg-gray-50"
+      className="flex gap-2 p-2 hover:bg-gray-100 break-smart"
     >
       <div className="flex flex-col">
         <img className='rounded-full' height={48} width={48} src={avatar} alt="Avatar" />

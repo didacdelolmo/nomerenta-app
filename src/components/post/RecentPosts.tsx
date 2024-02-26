@@ -24,11 +24,11 @@ export default function RecentPosts() {
       )}
       {isPending && <span>Cargando...</span>}
       {!hasMore ? (
-        <span className="text-center my-2 italic text-lg">
+        <span className="text-center py-2 italic text-lg font-medium">
           Has llegado al fin...
         </span>
       ) : (
-        <button onClick={loadMorePosts} className="text-xl font-bold">
+        <button onClick={loadMorePosts} className="text-xl font-bold py-1.5 hover:bg-black hover:text-white">
           Cargar más publicaciones
         </button>
       )}
