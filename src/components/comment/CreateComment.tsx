@@ -36,7 +36,7 @@ export default function CreateComment({
         className="p-2 text-lg"
         required
       ></textarea> */}
-      <button disabled={isPending} className="text-lg">
+      <button disabled={isPending} className="text-xl bg-gray-200 rounded-md py-1.5 font-bold border border-gray-600 hover:bg-black hover:text-white">
         Publicar comentario
       </button>
       {isError && (

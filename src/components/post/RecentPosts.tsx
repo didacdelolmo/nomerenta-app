@@ -13,8 +13,8 @@ export default function RecentPosts() {
   } = useGetRecentPaginatedPosts();
 
   return (
-    <div className="flex flex-col gap-2">
-      <h2 className="text-center">Publicaciones más recientes</h2>
+    <div className="flex flex-col divide-y divide-gray-600">
+      <h2 className="text-center text-2xl font-bold my-5">Publicaciones más recientes</h2>
       {posts &&
         posts.map((post, index) => (
           <RecentPostPreview key={index} post={post} />

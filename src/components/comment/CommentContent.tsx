@@ -26,11 +26,11 @@ export default function CommentContent({ comment }: { comment: Comment }) {
 
   return (
     <div id={_id} className="flex gap-2">
-      <div className="flex flex-col">
+      <div className="flex flex-col items-center gap-2">
         <Link to={`/users/${author._id}`}>
-          <img height={48} width={48} src={avatar} alt="Avatar" />
+          <img className='rounded-full' height={48} width={48} src={avatar} alt="Avatar" />
         </Link>
-        <hr className="h-full" />
+        <hr className="h-full w-[1px] bg-gray-600" />
       </div>
       <div className="flex flex-col gap-5 w-full">
         <div className="flex flex-col gap-2">
@@ -50,7 +50,7 @@ export default function CommentContent({ comment }: { comment: Comment }) {
               {author.flair}
             </span>
           )}
-          <p className="m-0 text-lg leading-6">
+          <p className="m-0 text-lg leading-6 text-gray-800">
             {author.roleId !== 'member' ? (
               <Markdown>{content}</Markdown>
             ) : (

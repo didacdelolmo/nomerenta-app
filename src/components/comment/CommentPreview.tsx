@@ -21,18 +21,18 @@ export default function CommentPreview({ comment }: { comment: Comment }) {
   return (
     <Link
       to={`/posts/${post._id}`}
-      className="flex gap-2 outline outline-1 outline-gray-500 p-2 hover:bg-gray-50"
+      className="flex gap-2 p-2 hover:bg-gray-50"
     >
       <div className="flex flex-col">
-        <img height={48} width={48} src={avatar} alt="Avatar" />
+        <img className='rounded-full' height={48} width={48} src={avatar} alt="Avatar" />
       </div>
       <div className="flex flex-col gap-5 w-full">
         <div className="flex flex-col gap-2">
           <div className="flex flex-col">
             <span className={`${roleColorClass} font-bold`}>{author.username}</span>
-            <span>Hace {formatDistanceToNow(date, { locale: es })}</span>
+            <span className='text-gray-800'>Hace {formatDistanceToNow(date, { locale: es })}</span>
           </div>
-          <div className="m-0 text-lg leading-6">
+          <div className="m-0 text-lg leading-6 text-gray-800">
             {author.roleId !== 'member' ? (
               <Markdown
                 components={{

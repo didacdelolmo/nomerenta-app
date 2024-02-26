@@ -16,15 +16,21 @@ export default function SetBiography({ user }: { user: User }) {
     <>
       <form onSubmit={handleSubmit} className="flex gap-2">
         <label className="font-bold">Biografía:</label>
-        <textarea
-          onChange={handleBiography}
-          value={biography}
-          className="w-full"
-          rows={5}
-        ></textarea>
-        <button disabled={isPending} type="submit">
-          Actualizar
-        </button>
+        <div className="flex w-full">
+          <textarea
+            onChange={handleBiography}
+            value={biography}
+            className="italic w-full border border-gray-600 border-r-0 rounded-l-md"
+            rows={3}
+          ></textarea>
+          <button
+            disabled={isPending}
+            type="submit"
+            className="bg-gray-200 px-2 border border-gray-600 hover:bg-black hover:text-white text-sm font-medium"
+          >
+            Actualizar
+          </button>
+        </div>
       </form>
       {isPending && <span>Actualizando...</span>}
       {isError && (

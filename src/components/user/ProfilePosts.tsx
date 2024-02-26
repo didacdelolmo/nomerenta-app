@@ -16,7 +16,7 @@ export default function ProfilePosts({ user }: { user: User }) {
       {isPending && <span>Cargando...</span>}
       {isError && <span>{error.message}</span>}
       {isSuccess && (
-        <div className='flex flex-col gap-2'>
+        <div className='flex flex-col divide-y divide-gray-600'>
           {response.data.map((post, index) => (
             <RecentPostPreview key={index} post={post} />
           ))}

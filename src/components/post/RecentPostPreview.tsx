@@ -29,7 +29,7 @@ export default function RecentPostPreview({ post }: { post: Post }) {
   return (
     <Link
       to={`/posts/${_id}`}
-      className="flex gap-5 outline outline-1 outline-gray-500 p-2 hover:bg-gray-50 hover:cursor-pointer"
+      className="flex gap-5 p-2 hover:bg-gray-50 hover:cursor-pointer"
     >
       <div className="flex flex-col items-center">
         <div
@@ -73,9 +73,11 @@ export default function RecentPostPreview({ post }: { post: Post }) {
         </div>
       </div>
       <div className="flex flex-col md:flex-row justify-between w-full gap-2">
-        <div className="flex flex-col flex-grow min-w-0 justify-between">
-          <h2 className="m-0 tracking-tight">No me renta {title}</h2>
-          <div className="m-0 break-words line-clamp-2">
+        <div className="flex flex-col flex-grow min-w-0 justify-between gap-2">
+          <h2 className="m-0 tracking-tight leading-tight text-2xl font-bold">
+            No me renta {title}
+          </h2>
+          <div className="m-0 break-all line-clamp-2 text-gray-800">
             {author.roleId !== 'member' ? (
               <Markdown>{content}</Markdown>
             ) : (
@@ -83,8 +85,8 @@ export default function RecentPostPreview({ post }: { post: Post }) {
             )}
           </div>
         </div>
-        <div className="order-first md:order-last self-start flex flex-col flex-shrink-0 items-end justify-between gap-1 md:gap-5">
-          <div className="flex flex-col items-start md:items-end justify-between">
+        <div className="order-first md:order-last self-start flex flex-col flex-shrink-0 items-end justify-between gap-1 md:gap-0 md:h-full">
+          <div className="flex flex-col items-start md:items-end">
             <div className="flex gap-2 items-center">
               <span
                 onClick={(e) => {
@@ -95,9 +97,9 @@ export default function RecentPostPreview({ post }: { post: Post }) {
               >
                 {author.username}
               </span>
-              <img height={32} width={32} src={avatar} alt="Avatar" />
+              <img className='rounded-full' height={32} width={32} src={avatar} alt="Avatar" />
             </div>
-            <span>Hace {formatDistanceToNow(date, { locale: es })}</span>
+            <span className='text-gray-800'>Hace {formatDistanceToNow(date, { locale: es })}</span>
           </div>
           <div className="flex items-end self-start md:self-end">
             <svg

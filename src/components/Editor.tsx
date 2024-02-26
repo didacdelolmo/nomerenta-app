@@ -19,14 +19,14 @@ export default function Editor({
           onChange={handleMarkdown}
           value={content}
           options={options}
-          className="text-lg"
+          className="text-lg border border-gray-600 rounded-md outline-orange-400"
           placeholder={placeholder}
         />
       ) : (
         <textarea
           onChange={handleContent}
           value={content}
-          className="p-2 text-lg h-48"
+          className="p-2 text-lg h-40 border border-gray-600 rounded-md"
           placeholder={placeholder}
           required
         />

@@ -6,7 +6,7 @@ export default function ChangeAvatar() {
 
   return (
     <>
-      <label className="w-fit rounded-sm bg-gray-100 outline outline-1 px-2 hover:bg-gray-200">
+      <label className="w-fit rounded-md bg-gray-100 px-2 border border-gray-600 hover:bg-gray-200">
         <span>Cambiar foto de perfil</span>
         <input
           onChange={handleInput}

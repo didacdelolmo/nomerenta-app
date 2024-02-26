@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAudio } from '../context/audio-context';
 import useGetCurrentUserUnseenNotificationsCountQuery from '../api/queries/notification/use-get-current-user-unseen-notifications-count-query';
 import useUserStore from '../store/user-store';
+import nmrsvg from '../assets/nmrsvg.svg'
 
 export default function Navbar() {
   const { data: response, isSuccess } =
@@ -16,9 +17,10 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="relative min-h-[10vh] flex justify-between items-center">
-        <Link to="/">
-          <h1 className="text-3xl tracking-tighter italic m-0">NO ME RENTA</h1>
+      <nav className="relative min-h-[12vh] flex justify-between items-center px-2">
+        <Link to="/" className='flex items-center gap-2'>
+          <img width={64} height={64} src={nmrsvg} alt="NOMERENTA" />
+          {/* <h1 className="text-3xl tracking-tighter italic m-0 font-bold">NOMERENTA</h1> */}
           {/* <span className="italic">Sin censura</span> */}
         </Link>
         <div className="flex gap-5">
@@ -107,7 +109,7 @@ export default function Navbar() {
           {user ? <NavbarProfile /> : <Auth />}
         </div>
       </nav>
-      <hr />
+      <hr className='border-gray-600' />
     </>
   );
 }

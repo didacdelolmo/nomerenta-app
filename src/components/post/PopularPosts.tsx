@@ -16,7 +16,7 @@ export default function PopularPosts() {
 
   return (
     <div>
-      <h2 className='text-center'>Publicaciones destacadas</h2>
+      <h2 className='text-center text-2xl font-bold my-5'>Publicaciones destacadas</h2>
       {isPending && <span>Cargando...</span>}
       {isError && (
         <span className="text-red-600 underline">{error.message}</span>

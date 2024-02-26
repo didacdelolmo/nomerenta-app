@@ -28,63 +28,72 @@ export default function ProfileContent({ user }: { user: User }) {
   } = useProfileState();
 
   return (
-    <div className="relative flex flex-col outline outline-1 outline-gray-500 p-2 gap-5">
+    <div className="relative flex flex-col outline outline-1 outline-gray-500 gap-5">
       {(!currentUser || currentUser?.roleId === 'member') && (
-        <button className="absolute right-0 mr-2">
+        <button className="lg:hidden absolute right-0 m-2 bg-yellow-600 px-2 text-white font-semibold rounded-md hover:bg-yellow-500">
           <a
             href="https://buy.stripe.com/9AQg08e7bc312haaEF"
             target="_blank"
-            className="hover:cursor-default"
           >
             Comprar PREMIUM
           </a>
         </button>
       )}
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 p-2">
         <div className="flex gap-2 items-center">
-          <img height={75} width={75} src={avatar} alt="Avatar" />
+          <img
+            className="rounded-md"
+            height={75}
+            width={75}
+            src={avatar}
+            alt="Avatar"
+          />
           <div className="flex flex-col">
             <div className="flex gap-2 items-center">
               <span className={`${roleColorClass} font-bold text-2xl`}>
                 {username}
               </span>
               {roleId === 'premium' && (
-                <div className="bg-yellow-600 w-fit text-white font-bold text-sm px-2">
+                <div className="bg-yellow-600 w-fit text-white font-bold text-sm px-2 rounded-md">
                   Premium
                 </div>
               )}
               {roleId === 'editor' && (
-                <div className="bg-pink-600 w-fit text-white font-bold text-sm px-2">
+                <div className="bg-pink-600 w-fit text-white font-bold text-sm px-2 rounded-md">
                   Editor
                 </div>
               )}
               {roleId === 'judge' && (
-                <div className="bg-teal-600 w-fit text-white font-bold text-sm px-2">
+                <div className="bg-teal-600 w-fit text-white font-bold text-sm px-2 rounded-md">
                   Juez
                 </div>
               )}
               {roleId === 'police_officer' && (
-                <div className="bg-blue-600 w-fit text-white font-bold text-sm px-2">
+                <div className="bg-blue-600 w-fit text-white font-bold text-sm px-2 rounded-md">
                   Policía
                 </div>
               )}
               {roleId === 'professor' && (
-                <div className="bg-purple-600 w-fit text-white font-bold text-sm px-2">
+                <div className="bg-purple-600 w-fit text-white font-bold text-sm px-2 rounded-md">
                   Profesor
                 </div>
               )}
               {roleId === 'dealer' && (
-                <div className="bg-lime-600 w-fit text-white font-bold text-sm px-2">
+                <div className="bg-lime-600 w-fit text-white font-bold text-sm px-2 rounded-md">
                   Traficante
                 </div>
               )}
               {roleId === 'dictator' && (
-                <div className="bg-red-600 w-fit text-white font-bold text-sm px-2">
+                <div className="bg-red-600 w-fit text-white font-bold text-sm px-2 rounded-md">
                   Dictador
                 </div>
               )}
             </div>
-            {flair && <span className="text-lg italic leading-5">{flair}</span>}
+            {flair && (
+              <span className="bg-gray-100 rounded-md px-2 text-lg py-0.5 italic leading-5">
+                {flair}
+              </span>
+            )}
           </div>
         </div>
         {currentUser?._id === _id && <ChangeAvatar />}
@@ -100,41 +109,46 @@ export default function ProfileContent({ user }: { user: User }) {
           )}
           <span>{followers.length} seguidores</span>
         </div>
-        {biography && <p>{biography}</p>}
+        {biography && (
+          <div>
+            <span className='font-bold text-lg'>Sobre mí</span>
+            <p className="text-gray-800">{biography}</p>
+          </div>
+        )}
       </div>
       {currentUser?.roleId === 'editor' && (
         <div className="flex flex-col">
           <span
             onClick={() => setCanEdit(!canEdit)}
-            className="hover:underline hover:cursor-pointer text-xl font-bold w-fit"
+            className="hover:underline hover:cursor-pointer text-xl font-bold w-fit px-2 pb-2"
           >
             Administrar perfil
           </span>
-          <hr className="w-full" />
           {canEdit && (
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 px-2 pb-2">
               <SetFlair user={user} />
               <SetBiography user={user} />
             </div>
           )}
+          <hr className="border-gray-600" />
         </div>
       )}
       <div className="flex flex-col">
-        <div className="flex gap-5 text-xl font-bold">
+        <div className="flex gap-2 text-xl font-bold px-2 pb-2">
           <span
             onClick={setPostsSection}
-            className="hover:underline hover:cursor-pointer"
+            className={`${isPostsSection && 'bg-gray-200'} px-2 rounded-md hover:bg-gray-200 hover:cursor-pointer text-2xl`}
           >
             Publicaciones
           </span>
           <span
             onClick={setCommentsSection}
-            className="hover:underline hover:cursor-pointer"
+            className={`${isCommentsSection && 'bg-gray-200'} px-2 rounded-md hover:bg-gray-200 hover:cursor-pointer text-2xl`}
           >
             Comentarios
           </span>
         </div>
-        <hr className="w-full" />
+          <hr className='border-gray-600' />
         {isPostsSection && <ProfilePosts user={user} />}
         {isCommentsSection && <ProfileComments user={user} />}
       </div>

@@ -87,11 +87,11 @@ export default function PostContent({ post }: { post: Post }) {
             </svg>
           </div>
         </div>
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-5 break-all">
           <div className="flex flex-col gap-1">
             <div className="flex gap-2">
               <Link to={`/users/${author._id}`}>
-                <img height={48} width={48} src={avatar} alt="Avatar" />
+                <img className='rounded-full' height={48} width={48} src={avatar} alt="Avatar" />
               </Link>
               <div className="flex flex-col justify-evenly">
                 <span>
@@ -104,7 +104,7 @@ export default function PostContent({ post }: { post: Post }) {
                     </span>
                   </Link>
                 </span>
-                <span>Hace {formatDistanceToNow(date, { locale: es })}</span>
+                <span className='text-gray-800'>Hace {formatDistanceToNow(date, { locale: es })}</span>
               </div>
             </div>
             {author.flair && (
@@ -114,8 +114,8 @@ export default function PostContent({ post }: { post: Post }) {
             )}
           </div>
           <div className="flex flex-col gap-5">
-            <h2 className="m-0 tracking-tight">No me renta {title}</h2>
-            <p className="m-0 text-lg">
+            <h2 className="m-0 tracking-tight text-2xl font-bold">No me renta {title}</h2>
+            <p className="m-0 text-lg text-gray-800">
               {author.roleId !== 'member' ? (
                 <Markdown>{content}</Markdown>
               ) : (
