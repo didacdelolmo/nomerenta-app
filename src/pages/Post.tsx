@@ -14,7 +14,7 @@ export default function Post() {
   } = useGetPostByIdQuery({ postId });
 
   return (
-    <div className="flex flex-col md:grid grid-cols-4 grid-flow-row gap-2">
+    <div className="flex flex-col md:grid grid-cols-4 grid-flow-row divide-x divide-gray-600">
       <div className="col-span-3">
         {isPending && <span>Cargando...</span>}
         {isError && (
@@ -22,7 +22,7 @@ export default function Post() {
         )}
         {isSuccess && <PostContent post={response.data} />}
       </div>
-      <div className="hidden md:grid col-span-1">
+      <div className="hidden md:grid col-span-1 pl-2">
         <PopularPosts />
       </div>
     </div>

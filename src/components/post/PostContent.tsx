@@ -40,8 +40,8 @@ export default function PostContent({ post }: { post: Post }) {
   const { hasCopied, copyCurrentURL } = useClipboard();
 
   return (
-    <div className="flex flex-col gap-2">
-      <div className="flex gap-5 outline outline-1 outline-gray-500 p-2">
+    <div className="flex flex-col divide-y divide-gray-600 border-l border-b border-gray-600">
+      <div className="flex gap-5 p-2">
         <div className="flex flex-col items-center">
           <div
             onClick={handleUpvote}
@@ -113,7 +113,7 @@ export default function PostContent({ post }: { post: Post }) {
               </span>
             )}
           </div>
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-2">
             <h2 className="m-0 tracking-tight text-2xl font-bold">No me renta {title}</h2>
             <p className="m-0 text-lg text-gray-800">
               {author.roleId !== 'member' ? (
@@ -172,7 +172,7 @@ export default function PostContent({ post }: { post: Post }) {
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-5 outline outline-1 outline-gray-500 p-2">
+      <div className="flex flex-col p-2 gap-5">
         <CreateComment postId={_id} />
         {isPending && <span>Cargando comentarios...</span>}
         {isError && (
