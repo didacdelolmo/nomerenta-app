@@ -20,6 +20,9 @@ export default function useRegisterMutation() {
       queryClient.invalidateQueries({
         queryKey: ['get-current-user-unseen-notifications-count'],
       });
+      queryClient.invalidateQueries({
+        queryKey: ['get-current-user-invitations'],
+      });
     },
   });
 }

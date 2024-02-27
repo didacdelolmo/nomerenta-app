@@ -21,8 +21,8 @@ export default function useLoginMutation() {
         queryKey: ['get-current-user-unseen-notifications-count'],
       });
       queryClient.invalidateQueries({
-      queryKey: ['get-current-user-invitations']
-      })
+        queryKey: ['get-current-user-invitations'],
+      });
     },
   });
 }

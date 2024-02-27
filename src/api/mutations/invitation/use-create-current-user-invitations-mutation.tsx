@@ -9,6 +9,9 @@ export default function useCreateCurrentUserInvitationsMutation() {
 
     onSuccess: () => {
       queryClient.refetchQueries({
+        queryKey: ['get-current-user'],
+      });
+      queryClient.refetchQueries({
         queryKey: ['get-current-user-invitations'],
       });
     },
