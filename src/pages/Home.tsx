@@ -1,8 +1,8 @@
 import Gifs from '../components/Gifs';
 import Premium from '../components/Premium';
+import RecentActivity from '../components/RecentActivity';
 import CreatePost from '../components/post/CreatePost';
 import PopularPosts from '../components/post/PopularPosts';
-import RecentPosts from '../components/post/RecentPosts';
 import useUserStore from '../store/user-store';
 
 export default function Home() {
@@ -19,7 +19,7 @@ export default function Home() {
           <PopularPosts />
           {(!user || user?.roleId === 'member') && <Premium />}
         </div>
-        <RecentPosts />
+        <RecentActivity />
       </div>
       <div className="hidden lg:grid col-span-1">
         <Gifs />

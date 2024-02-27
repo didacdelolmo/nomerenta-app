@@ -1,6 +1,7 @@
 import useGetCurrentUserInvitationsQuery from '../../api/queries/user/use-get-current-user-invitations-query';
 import useCreateInvitations from '../../hooks/invitation/use-create-invitations';
 import useUserStore from '../../store/user-store';
+import InvitationCode from './InvitationCode';
 
 export default function UserInvitations() {
   const user = useUserStore((state) => state.user);
@@ -22,8 +23,8 @@ export default function UserInvitations() {
           {isError && <span className="text-red-600">{error.message}</span>}
           {isSuccess && (
             <div className="flex flex-col">
-              {response.data.map((invitation) => (
-                <span>{invitation.code}</span>
+              {response.data.map((invitation, index) => (
+                <InvitationCode key={index} invitation={invitation} />
               ))}
             </div>
           )}
@@ -46,9 +47,10 @@ function InputEmail() {
         <input
           onChange={handleEmail}
           value={email}
-          type="text"
+          type="email"
           placeholder="nomerentas@gmail.com"
           className="border border-r-0 border-gray-600 rounded-md rounded-r-none px-1 w-full"
+          required
         />
         <button
           type="submit"

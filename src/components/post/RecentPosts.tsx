@@ -1,4 +1,4 @@
-import useGetRecentPaginatedPosts from '../../hooks/post/use-get-paginated-posts';
+import useGetRecentPaginatedPosts from '../../hooks/post/use-get-recent-paginated-posts';
 import RecentPostPreview from './RecentPostPreview';
 
 export default function RecentPosts() {
@@ -9,12 +9,10 @@ export default function RecentPosts() {
     isPending,
     isError,
     error,
-    // isSuccess,
   } = useGetRecentPaginatedPosts();
 
   return (
-    <div className="flex flex-col divide-y divide-gray-600">
-      <h2 className="text-center text-2xl font-bold my-5">Publicaciones más recientes</h2>
+    <>
       {posts &&
         posts.map((post, index) => (
           <RecentPostPreview key={index} post={post} />
@@ -28,10 +26,13 @@ export default function RecentPosts() {
           Has llegado al fin...
         </span>
       ) : (
-        <button onClick={loadMorePosts} className="text-xl font-bold py-1.5 hover:bg-black hover:text-white">
+        <button
+          onClick={loadMorePosts}
+          className="text-xl font-bold py-1.5 hover:bg-black hover:text-white"
+        >
           Cargar más publicaciones
         </button>
       )}
-    </div>
+    </>
   );
 }

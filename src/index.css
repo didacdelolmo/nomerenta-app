@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .cedarville {
-  font-family: "Cedarville Cursive", cursive;
+  font-family: 'Cedarville Cursive', cursive;
   font-weight: 400;
   font-style: normal;
 }
@@ -29,12 +29,12 @@ p {
 }
 
 .break-smart {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    -ms-word-break: break-all;
-    word-break: break-word;
-    -ms-hyphens: auto;
-    -moz-hyphens: auto;
-    -webkit-hyphens: auto;
-    hyphens: auto;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
 }

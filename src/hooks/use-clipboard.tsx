@@ -8,8 +8,14 @@ export default function useClipboard() {
     setHasCopied(true);
   };
 
+  const copyInput = (input: string) => {
+    navigator.clipboard.writeText(input);
+    setHasCopied(true);
+  };
+
   return {
     hasCopied,
     copyCurrentURL,
+    copyInput,
   };
 }

@@ -151,7 +151,7 @@ export default function ProfileContent({ user }: { user: User }) {
         </div>
       )}
       <div className="flex flex-col">
-        <div className="flex gap-2 text-xl font-bold px-2 pb-2">
+        <div className="flex gap-2 text-xl font-bold px-2 pb-2 flex-wrap">
           <span
             onClick={setPostsSection}
             className={`${

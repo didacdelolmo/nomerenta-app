@@ -29,7 +29,7 @@ export default function RecentPostPreview({ post }: { post: Post }) {
   return (
     <Link
       to={`/posts/${_id}`}
-      className="flex gap-5 p-2 hover:bg-gray-100 hover:cursor-pointer break-smart"
+      className="flex gap-5 p-2 hover:bg-gray-100 hover:cursor-pointer break-smart w-full"
     >
       <div className="flex flex-col items-center">
         <div
