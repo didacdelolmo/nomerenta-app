@@ -1,7 +1,6 @@
 import { Editor } from '@tiptap/react';
 import {
   Bold,
-  Heading2,
   ImagePlus,
   Italic,
   Palette,
@@ -93,18 +92,6 @@ export default function Toolbar({ editor }: { editor: Editor | null }) {
         } p-2 rounded-md hover:bg-gray-200`}
       >
         <Strikethrough className="size-4" />
-      </button>
-      <button
-        type="button"
-        onClick={() => {
-          editor.chain().focus().toggleHeading({ level: 2 }).run();
-        }}
-        // disabled={!editor.chain().focus().toggleHeading({ level: 2 }).run()}
-        className={`${
-          editor.isActive('heading') && 'bg-gray-200'
-        } p-2 rounded-md hover:bg-gray-200`}
-      >
-        <Heading2 className="size-4" />
       </button>
       <input
         ref={colorInputRef}

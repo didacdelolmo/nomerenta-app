@@ -14,23 +14,17 @@ export default function Tiptap({
   placeholder = '',
   content,
   handleContent,
-  clearContent = false,
+  startTimer,
 }: {
   placeholder: string;
   content: string;
   handleContent: (content: string) => void;
-  clearContent: boolean;
+  startTimer?: () => void;
 }) {
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
         dropcursor: false,
-        heading: {
-          HTMLAttributes: {
-            class: 'tiptap-h2',
-            levels: [2],
-          },
-        },
       }),
       Placeholder.configure({
         placeholder,
@@ -62,10 +56,10 @@ export default function Tiptap({
   });
 
   useEffect(() => {
-    if (clearContent && editor) {
-      editor.commands.setContent('');
+    if (editor && editor.getHTML() !== content) {
+      editor.commands.setContent(content);
     }
-  }, [clearContent, editor, handleContent]);
+  }, [content]);
 
   const user = useUserStore((state) => state.user);
   if (!user || user.roleId === 'member') {
@@ -74,6 +68,7 @@ export default function Tiptap({
         onChange={(e) => {
           handleContent(e.target.value);
         }}
+        onFocus={startTimer}
         value={content}
         placeholder={placeholder}
         className="rounded-md border border-gray-600 p-2 text-lg h-32"
@@ -84,7 +79,7 @@ export default function Tiptap({
   return (
     <div className="flex flex-col gap-2">
       <Toolbar editor={editor} />
-      <EditorContent editor={editor} />
+      <EditorContent editor={editor} onFocus={startTimer} />
     </div>
   );
 }

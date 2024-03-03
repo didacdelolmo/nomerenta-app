@@ -130,7 +130,7 @@ export default function ProfileContent({ user }: { user: User }) {
             Obtener invitaciones
           </span>
           {showInvitations && <UserInvitations />}
-          <hr className='border-gray-600' />
+          <hr className="border-gray-600" />
         </div>
       )}
       {currentUser?.roleId === 'editor' && (

@@ -17,7 +17,6 @@ export default function CreateComment({
     isPending,
     isError,
     error,
-    isSuccess,
   } = useCreateCommentForm({ postId, parentId, onSuccessCallback });
 
   return (
@@ -26,7 +25,6 @@ export default function CreateComment({
         placeholder="¿En qué piensas?"
         content={content}
         handleContent={handleContent}
-        clearContent={isSuccess}
       />
 
       {/* <Editor

@@ -20,7 +20,7 @@ export default function useCreatePostForm() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
 
     mutation.mutate({
       title,
@@ -42,6 +42,7 @@ export default function useCreatePostForm() {
   return {
     title,
     content,
+    setContent,
     handleTitle,
     handleContent,
     handleSubmit,
