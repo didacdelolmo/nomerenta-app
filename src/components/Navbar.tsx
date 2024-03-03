@@ -5,6 +5,7 @@ import { useAudio } from '../context/audio-context';
 import useGetCurrentUserUnseenNotificationsCountQuery from '../api/queries/notification/use-get-current-user-unseen-notifications-count-query';
 import useUserStore from '../store/user-store';
 import nmrsvg from '../assets/nmrsvg.svg'
+import { Cog } from 'lucide-react';
 
 export default function Navbar() {
   const { data: response, isSuccess } =
@@ -25,6 +26,11 @@ export default function Navbar() {
         </Link>
         <div className="flex gap-5">
           <div className="flex items-center">
+            {user?.roleId === 'dictator' && (
+              <Link to="/replacements">
+                <Cog />
+              </Link>
+            )}
             <div
               onClick={() => navigate('/search')}
               className="flex p-1 items-center hover:cursor-pointer hover:bg-gray-100"

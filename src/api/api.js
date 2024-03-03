@@ -266,3 +266,15 @@ export const fetchImageUpload = ({ file }) => {
     // { headers: { 'Content-Type': 'multipart/form-data', }, }
   );
 };
+
+export const fetchReplacements = () => {
+  return axios.get('/replacements');
+};
+
+export const fetchUpdateReplacements = ({ replacements }) => {
+  return axios.put(
+    '/replacements',
+    { replacements },
+    { withCredentials: true }
+  );
+};

@@ -7,6 +7,7 @@ import useGetCurrentUserQuery from './api/queries/user/use-get-current-user-quer
 import Layout from './pages/Layout';
 import Search from './pages/Search';
 import Giveaway from './pages/Giveaway';
+import Replacements from './pages/Replacements';
 
 export default function App() {
   // Initialize the authenticated user to the store
@@ -19,6 +20,7 @@ export default function App() {
         <Route path="/giveaway" element={<Giveaway />} />
         <Route path="/search" element={<Search />} />
         <Route path="/notifications" element={<Notifications />} />
+        <Route path="/replacements" element={<Replacements />} />
         <Route path="/users/:userId" element={<Profile />} />
         <Route path="/posts/:postId" element={<Post />} />
       </Route>
