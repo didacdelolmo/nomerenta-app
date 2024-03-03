@@ -1,4 +1,5 @@
 import useRecentActivityState from '../hooks/use-recent-activity-state';
+import useUserStore from '../store/user-store';
 import FollowsPosts from './post/FollowsPosts';
 import RecentPosts from './post/RecentPosts';
 
@@ -11,6 +12,8 @@ export default function RecentActivity() {
     setFollowsActivity,
     // setCommentsActivity,
   } = useRecentActivityState();
+
+  const user = useUserStore((state) => state.user);
 
   return (
     <div className="flex flex-col w-full divide-y divide-gray-600">
@@ -25,16 +28,18 @@ export default function RecentActivity() {
           >
             Publicaciones
           </button>
-          <button
-            onClick={setFollowsActivity}
-            className={`${
-              isFollowsActivity
-                ? 'bg-gray-300'
-                : 'bg-gray-200 hover:bg-gray-300'
-            } text-lg px-2 rounded-md font-bold flex-1`}
-          >
-            Siguiendo
-          </button>
+          {user && (
+            <button
+              onClick={setFollowsActivity}
+              className={`${
+                isFollowsActivity
+                  ? 'bg-gray-300'
+                  : 'bg-gray-200 hover:bg-gray-300'
+              } text-lg px-2 rounded-md font-bold flex-1`}
+            >
+              Siguiendo
+            </button>
+          )}
           {/* <button
             onClick={setCommentsActivity}
             className={`${

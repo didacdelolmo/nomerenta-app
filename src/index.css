@@ -38,3 +38,32 @@ p {
   -webkit-hyphens: auto;
   hyphens: auto;
 }
+
+.tiptap p.is-editor-empty:first-child::before {
+  @apply text-gray-400;
+
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+.tiptap-image {
+  @apply rounded-md;
+  @apply max-h-64;
+  width: auto;
+  object-fit: contain;
+}
+
+.tiptap-link {
+  @apply underline;
+  @apply text-cyan-500;
+}
+
+.tiptap-h2 {
+  @apply text-3xl;
+}
+
+em {
+  font-style: italic;
+}

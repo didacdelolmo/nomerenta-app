@@ -7,7 +7,7 @@ export default function useMarkCurrentUserNotificationAsSeen() {
   return useMutation({
     mutationFn: fetchMarkCurrentUserNotificationAsSeen,
 
-    onSuccess: () => {  
+    onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['get-current-user-notifications'],
       });

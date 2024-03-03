@@ -53,9 +53,9 @@ export default function PopularPostPreview({ post }: { post: Post }) {
         </div>
       </div>
       <div className="flex flex-col items-center">
-        <div className="flex items-center gap-2 self-start text-lg">
+        <div className="flex items-center gap-2 self-start">
           <img className='rounded-full' height={32} width={32} src={avatar} alt="Avatar" />
-          <span className={`${roleColorClass} font-bold`}>{author.username}</span>
+          <span className={`${roleColorClass} font-bold text-lg`}>{author.username}</span>
         </div>
         <span className="text-xl leading-tight font-medium">No me renta {post.title}</span>
       </div>

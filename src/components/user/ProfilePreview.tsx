@@ -14,7 +14,7 @@ export default function ProfilePreview({ user }: { user: User }) {
       className="p-2 hover:cursor-pointer hover:bg-gray-100"
     >
       <div className='flex gap-2'>
-        <img width={48} height={48} src={avatar} />
+        <img className='rounded-md' width={48} height={48} src={avatar} />
         <div className='flex flex-col justify-around'>
           <span className={`${roleColorClass} font-bold`}>{username}</span>
         </div>

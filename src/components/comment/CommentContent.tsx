@@ -7,11 +7,11 @@ import CreateComment from './CreateComment';
 import useToggler from '../../hooks/use-toggler';
 import useCommentVote from '../../hooks/comment/use-comment-vote';
 import { Link } from 'react-router-dom';
-import Markdown from 'react-markdown';
 import useUserRoleColorClass from '../../hooks/user/use-user-role-class';
+import SafeHtml from '../SafeHtml';
 
 export default function CommentContent({ comment }: { comment: Comment }) {
-  const { _id, content, score, replies, createdAt: date } = comment;
+  const { _id, content, score, replies, format, createdAt: date } = comment;
 
   const postId = comment.post as string;
   const author = comment.author as unknown as User;
@@ -28,7 +28,13 @@ export default function CommentContent({ comment }: { comment: Comment }) {
     <div id={_id} className="flex gap-2 break-smart">
       <div className="flex flex-col items-center gap-2">
         <Link to={`/users/${author._id}`}>
-          <img className='rounded-full' height={48} width={48} src={avatar} alt="Avatar" />
+          <img
+            className="rounded-full"
+            height={48}
+            width={48}
+            src={avatar}
+            alt="Avatar"
+          />
         </Link>
         <hr className="h-full w-[1px] bg-gray-600" />
       </div>
@@ -51,11 +57,7 @@ export default function CommentContent({ comment }: { comment: Comment }) {
             </span>
           )}
           <p className="m-0 text-lg leading-6 text-gray-800">
-            {author.roleId !== 'member' ? (
-              <Markdown>{content}</Markdown>
-            ) : (
-              content
-            )}
+            {format ? <SafeHtml html={content} /> : content}
           </p>
           <div className="flex gap-5 items-center">
             <div className="flex items-center gap-2">

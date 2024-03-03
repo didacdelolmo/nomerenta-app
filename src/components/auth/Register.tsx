@@ -27,7 +27,7 @@ export default function Register({ displayLogin }) {
             value={username}
             placeholder="Nombre de usuario"
             type="text"
-            className="w-16 sm:w-32 rounded-md border border-gray-600 px-1 text-sm"
+            className="w-24 rounded-md border border-gray-600 px-1 text-sm"
             required
           />
           <input
@@ -35,7 +35,7 @@ export default function Register({ displayLogin }) {
             value={password}
             placeholder="Contraseña"
             type="password"
-            className="w-16 sm:w-32 rounded-md border border-gray-600 px-1 text-sm"
+            className="w-24 rounded-md border border-gray-600 px-1 text-sm"
             required
           />
         </div>

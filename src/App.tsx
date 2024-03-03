@@ -6,6 +6,7 @@ import Notifications from './pages/Notifications';
 import useGetCurrentUserQuery from './api/queries/user/use-get-current-user-query';
 import Layout from './pages/Layout';
 import Search from './pages/Search';
+import Giveaway from './pages/Giveaway';
 
 export default function App() {
   // Initialize the authenticated user to the store
@@ -15,6 +16,7 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
+        <Route path="/giveaway" element={<Giveaway />} />
         <Route path="/search" element={<Search />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/users/:userId" element={<Profile />} />

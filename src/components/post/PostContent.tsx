@@ -9,8 +9,8 @@ import { es } from 'date-fns/locale';
 import CreateComment from '../comment/CreateComment';
 import CommentComment from '../comment/CommentContent';
 import { Link } from 'react-router-dom';
-import Markdown from 'react-markdown';
 import useUserRoleColorClass from '../../hooks/user/use-user-role-class';
+import SafeHtml from '../SafeHtml';
 
 export default function PostContent({ post }: { post: Post }) {
   const {
@@ -18,6 +18,7 @@ export default function PostContent({ post }: { post: Post }) {
     title,
     content,
     score,
+    format,
     commentsCount: commentCount,
     createdAt: date,
   } = post;
@@ -91,7 +92,13 @@ export default function PostContent({ post }: { post: Post }) {
           <div className="flex flex-col gap-1">
             <div className="flex gap-2">
               <Link to={`/users/${author._id}`}>
-                <img className='rounded-full' height={48} width={48} src={avatar} alt="Avatar" />
+                <img
+                  className="rounded-full"
+                  height={48}
+                  width={48}
+                  src={avatar}
+                  alt="Avatar"
+                />
               </Link>
               <div className="flex flex-col justify-evenly">
                 <span>
@@ -104,7 +111,9 @@ export default function PostContent({ post }: { post: Post }) {
                     </span>
                   </Link>
                 </span>
-                <span className='text-gray-800'>Hace {formatDistanceToNow(date, { locale: es })}</span>
+                <span className="text-gray-800">
+                  Hace {formatDistanceToNow(date, { locale: es })}
+                </span>
               </div>
             </div>
             {author.flair && (
@@ -114,14 +123,12 @@ export default function PostContent({ post }: { post: Post }) {
             )}
           </div>
           <div className="flex flex-col gap-2">
-            <h2 className="m-0 tracking-tight text-2xl font-bold">No me renta {title}</h2>
-            <p className="m-0 text-lg text-gray-800">
-              {author.roleId !== 'member' ? (
-                <Markdown>{content}</Markdown>
-              ) : (
-                content
-              )}
-            </p>
+            <h2 className="m-0 tracking-tight text-2xl font-bold">
+              No me renta {title}
+            </h2>
+            <div className="text-lg text-gray-800">
+              {format ? <SafeHtml html={content} /> : content}
+            </div>
           </div>
           <div className="flex gap-5">
             <div className="flex items-end gap-1">

@@ -4,9 +4,9 @@ import Post from '../../store/types/post-interface';
 import User from '../../store/types/user-interface';
 import { formatDistanceToNow } from 'date-fns';
 import usePostVote from '../../hooks/post/use-post-vote';
-import Markdown from 'react-markdown';
 import useUserRoleColorClass from '../../hooks/user/use-user-role-class';
 import { es } from 'date-fns/locale';
+import SafeHtml from '../SafeHtml';
 
 export default function RecentPostPreview({ post }: { post: Post }) {
   const {
@@ -14,6 +14,7 @@ export default function RecentPostPreview({ post }: { post: Post }) {
     title,
     content,
     score,
+    format,
     createdAt: date,
     commentsCount: commentCount,
   } = post;
@@ -77,12 +78,8 @@ export default function RecentPostPreview({ post }: { post: Post }) {
           <h2 className="m-0 tracking-tight leading-tight text-2xl font-bold">
             No me renta {title}
           </h2>
-          <div className="m-0 line-clamp-2 text-gray-800">
-            {author.roleId !== 'member' ? (
-              <Markdown>{content}</Markdown>
-            ) : (
-              content
-            )}
+          <div className="line-clamp-2 text-gray-800">
+            {format ? <SafeHtml html={content} /> : content}
           </div>
         </div>
         <div className="order-first md:order-last self-start flex flex-col flex-shrink-0 items-end justify-between gap-1 md:gap-0 md:h-full">
@@ -97,9 +94,17 @@ export default function RecentPostPreview({ post }: { post: Post }) {
               >
                 {author.username}
               </span>
-              <img className='rounded-full' height={32} width={32} src={avatar} alt="Avatar" />
+              <img
+                className="rounded-full"
+                height={32}
+                width={32}
+                src={avatar}
+                alt="Avatar"
+              />
             </div>
-            <span className='text-gray-800'>Hace {formatDistanceToNow(date, { locale: es })}</span>
+            <span className="text-gray-800">
+              Hace {formatDistanceToNow(date, { locale: es })}
+            </span>
           </div>
           <div className="flex items-end self-start md:self-end">
             <svg

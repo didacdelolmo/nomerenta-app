@@ -1,4 +1,5 @@
 import Gifs from '../components/Gifs';
+import GiveawayButton from '../components/GiveawayButton';
 import Premium from '../components/Premium';
 import RecentActivity from '../components/RecentActivity';
 import CreatePost from '../components/post/CreatePost';
@@ -18,6 +19,7 @@ export default function Home() {
         <div className="flex flex-col gap-2 lg:hidden mx-2">
           <PopularPosts />
           {(!user || user?.roleId === 'member') && <Premium />}
+          <GiveawayButton />
         </div>
         <RecentActivity />
       </div>

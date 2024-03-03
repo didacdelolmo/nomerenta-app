@@ -1,5 +1,5 @@
 import useCreatePostForm from '../../hooks/post/use-create-post-form';
-import Editor from '../Editor';
+import Tiptap from '../Tiptap';
 
 export default function CreatePost() {
   const {
@@ -7,16 +7,12 @@ export default function CreatePost() {
     content,
     handleTitle,
     handleContent,
-    handleMarkdown,
     handleSubmit,
     isPending,
   } = useCreatePostForm();
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="px-2 gap-2 flex flex-col"
-    >
+    <form onSubmit={handleSubmit} className="px-2 gap-2 flex flex-col">
       {/* <span>Members Only</span> */}
       <div className="flex flex-col md:flex-row items-center gap-2 p-1 md:p-0 mt-2">
         <h2 className="text-4xl m-0 font-bold">No me renta</h2>
@@ -30,11 +26,10 @@ export default function CreatePost() {
         />
       </div>
       <div className="flex flex-col gap-2">
-        <Editor
+        <Tiptap
           placeholder="No te contengas..."
           content={content}
           handleContent={handleContent}
-          handleMarkdown={handleMarkdown}
         />
         <button
           type="submit"

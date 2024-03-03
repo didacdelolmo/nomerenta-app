@@ -12,15 +12,18 @@ export default function useLogoutMutation() {
     onSuccess: () => {
       setUser(undefined);
 
-      queryClient.invalidateQueries({ queryKey: ['get-current-user'] });
+      queryClient.refetchQueries({ queryKey: ['get-current-user'] });
       queryClient.invalidateQueries({
         queryKey: ['get-current-user-notifications'],
       });
-      queryClient.invalidateQueries({
+      queryClient.refetchQueries({
         queryKey: ['get-current-user-unseen-notifications-count'],
       });
       queryClient.invalidateQueries({
         queryKey: ['get-current-user-invitations'],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ['get-current-user-follows-posts'],
       });
     },
   });

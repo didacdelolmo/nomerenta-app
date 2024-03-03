@@ -254,3 +254,15 @@ export const fetchCreateCurrentUserInvitations = ({ email }) => {
     { withCredentials: true }
   );
 };
+
+export const fetchImageUpload = ({ file }) => {
+  const formData = new FormData();
+  formData.append('image', file);
+
+  return axios.post(
+    '/images',
+    formData,
+    { withCredentials: true }
+    // { headers: { 'Content-Type': 'multipart/form-data', }, }
+  );
+};

@@ -6,11 +6,11 @@ import { es } from 'date-fns/locale';
 import useCommentVote from '../../hooks/comment/use-comment-vote';
 import { Link } from 'react-router-dom';
 import Post from '../../store/types/post-interface';
-import Markdown from 'react-markdown';
 import useUserRoleColorClass from '../../hooks/user/use-user-role-class';
+import SafeHtml from '../SafeHtml';
 
 export default function CommentPreview({ comment }: { comment: Comment }) {
-  const { content, score, createdAt: date } = comment;
+  const { content, score, format, createdAt: date } = comment;
   const author = comment.author as unknown as User;
   const post = comment.post as Post;
   const { avatar } = useUserAvatarURL({ user: author });
@@ -24,27 +24,26 @@ export default function CommentPreview({ comment }: { comment: Comment }) {
       className="flex gap-2 p-2 hover:bg-gray-100 break-smart"
     >
       <div className="flex flex-col">
-        <img className='rounded-full' height={48} width={48} src={avatar} alt="Avatar" />
+        <img
+          className="rounded-full"
+          height={48}
+          width={48}
+          src={avatar}
+          alt="Avatar"
+        />
       </div>
       <div className="flex flex-col gap-5 w-full">
         <div className="flex flex-col gap-2">
           <div className="flex flex-col">
-            <span className={`${roleColorClass} font-bold`}>{author.username}</span>
-            <span className='text-gray-800'>Hace {formatDistanceToNow(date, { locale: es })}</span>
+            <span className={`${roleColorClass} font-bold`}>
+              {author.username}
+            </span>
+            <span className="text-gray-800">
+              Hace {formatDistanceToNow(date, { locale: es })}
+            </span>
           </div>
           <div className="m-0 text-lg leading-6 text-gray-800">
-            {author.roleId !== 'member' ? (
-              <Markdown
-                components={{
-                  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                  a: ({ node, ...props }) => <span {...props} />,
-                }}
-              >
-                {content}
-              </Markdown>
-            ) : (
-              content
-            )}
+            {format ? <SafeHtml html={content} /> : content}
           </div>
           <div className="flex gap-5 items-center">
             <div className="flex items-center gap-2">

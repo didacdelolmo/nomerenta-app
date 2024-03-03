@@ -20,7 +20,7 @@ export default function Login({ displayRegister }) {
           value={username}
           placeholder="Nombre de usuario"
           type="text"
-          className="w-32 sm:w-64 text-sm border border-gray-600 rounded-md px-1"
+          className="w-48 text-sm border border-gray-600 rounded-md px-1"
           required
         />
         <input
@@ -28,7 +28,7 @@ export default function Login({ displayRegister }) {
           value={password}
           placeholder="Contraseña"
           type="password"
-          className="w-32 sm:w-64 text-sm border border-gray-600 rounded-md px-1"
+          className="w-48 text-sm border border-gray-600 rounded-md px-1"
           required
         />
         <div className="flex w-full gap-1">

@@ -1,4 +1,4 @@
-import useGetCurrentUserNotificationsQuery from '../../api/queries/notification/use-get-current-user-notifications-query';
+  import useGetCurrentUserNotificationsQuery from '../../api/queries/notification/use-get-current-user-notifications-query';
 import NotificationPreview from './NotificationPreview';
 
 export default function NotificationList() {

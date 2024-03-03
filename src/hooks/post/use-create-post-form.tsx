@@ -15,8 +15,8 @@ export default function useCreatePostForm() {
     setTitle(e.target.value);
   };
 
-  const handleContent = (e) => {
-    setContent(e.target.value);
+  const handleContent = (content) => {
+    setContent(content);
   };
 
   const handleMarkdown = (content) => {
@@ -33,7 +33,7 @@ export default function useCreatePostForm() {
   };
 
   useEffect(() => {
-      if (!isSuccess) {
+    if (!isSuccess) {
       return;
     }
 
