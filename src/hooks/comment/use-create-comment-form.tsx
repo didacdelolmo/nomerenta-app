@@ -14,11 +14,7 @@ export default function useCreateCommentForm({
 
   const mutation = useCreatePostCommentMutation();
 
-  const handleContent = (e) => {
-    setContent(e.target.value);
-  };
-
-  const handleMarkdown = (content) => {
+  const handleContent = (content) => {
     setContent(content);
   };
 
@@ -49,7 +45,6 @@ export default function useCreateCommentForm({
   return {
     content,
     handleContent,
-    handleMarkdown,
     handleSubmit,
     ...mutation,
   };

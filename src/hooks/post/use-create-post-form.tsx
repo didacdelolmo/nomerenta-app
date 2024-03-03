@@ -19,10 +19,6 @@ export default function useCreatePostForm() {
     setContent(content);
   };
 
-  const handleMarkdown = (content) => {
-    setContent(content);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -48,7 +44,6 @@ export default function useCreatePostForm() {
     content,
     handleTitle,
     handleContent,
-    handleMarkdown,
     handleSubmit,
     ...mutation,
   };
