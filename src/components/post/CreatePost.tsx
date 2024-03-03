@@ -9,6 +9,7 @@ export default function CreatePost() {
     handleContent,
     handleSubmit,
     isPending,
+    isSuccess,
   } = useCreatePostForm();
 
   return (
@@ -30,6 +31,7 @@ export default function CreatePost() {
           placeholder="No te contengas..."
           content={content}
           handleContent={handleContent}
+          clearContent={isSuccess}
         />
         <button
           type="submit"

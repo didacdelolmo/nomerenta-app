@@ -10,8 +10,15 @@ export default function CreateComment({
   parentId?: string;
   onSuccessCallback?: () => void;
 }) {
-  const { content, handleContent, handleSubmit, isPending, isError, error } =
-    useCreateCommentForm({ postId, parentId, onSuccessCallback });
+  const {
+    content,
+    handleContent,
+    handleSubmit,
+    isPending,
+    isError,
+    error,
+    isSuccess,
+  } = useCreateCommentForm({ postId, parentId, onSuccessCallback });
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-2">
@@ -19,6 +26,7 @@ export default function CreateComment({
         placeholder="¿En qué piensas?"
         content={content}
         handleContent={handleContent}
+        clearContent={isSuccess}
       />
 
       {/* <Editor
