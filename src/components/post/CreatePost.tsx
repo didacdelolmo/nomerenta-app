@@ -44,25 +44,27 @@ export default function CreatePost() {
           required
         />
       </div>
-      <div className="flex justify-between">
-        <span
-          className={`${
-            isTicking && timeLeft % 2 !== 0 ? 'visible' : 'invisible'
-          } font-bold text-red-600`}
-        >
-          TIC...
-        </span>
-        <span className="italic text-red-600">
-          {timeLeft} segundos {message}
-        </span>
-        <span
-          className={`${
-            isTicking && timeLeft % 2 === 0 ? 'visible' : 'invisible'
-          } font-bold text-red-600`}
-        >
-          TAC...
-        </span>
-      </div>
+      {isTicking && (
+        <div className="flex justify-between">
+          <span
+            className={`${
+              timeLeft % 2 === 0 ? 'visible' : 'invisible'
+            } font-bold text-red-600`}
+          >
+            TIC...
+          </span>
+          <span className="italic text-red-600">
+            {timeLeft} segundos {message}
+          </span>
+          <span
+            className={`${
+              timeLeft % 2 !== 0 ? 'visible' : 'invisible'
+            } font-bold text-red-600`}
+          >
+            TAC...
+          </span>
+        </div>
+      )}
       <div className="flex flex-col gap-2">
         <Tiptap
           placeholder="No te contengas..."
