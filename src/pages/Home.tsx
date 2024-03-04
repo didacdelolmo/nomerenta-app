@@ -10,11 +10,11 @@ export default function Home() {
   const user = useUserStore((state) => state.user);
 
   return (
-    <div className="flex flex-col lg:grid grid-cols-4 grid-flow-row divide-x divide-gray-600">
+    <div className="flex flex-col lg:grid grid-cols-4 grid-flow-row">
       <div className="hidden lg:grid col-span-1 mr-2">
         <PopularPosts />
       </div>
-      <div className="col-span-2 flex flex-col gap-2 divide-y divide-gray-600">
+      <div className="col-span-2 flex flex-col gap-2 divide-y divide-gray-600 outline outline-1 outline-gray-600">
         <CreatePost />
         <div className="flex flex-col gap-2 lg:hidden mx-2">
           <PopularPosts />

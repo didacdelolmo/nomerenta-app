@@ -12,8 +12,9 @@ export default function NotificationList() {
 
   return (
     <>
-      <div className="flex flex-col">
+      <div className="flex flex-col outline outline-1 outline-gray-600">
         <h2 className="p-2 text-2xl font-bold">Notificaciones</h2>
+        <hr className='border-gray-600' />
         {isPending && <span>Cargando...</span>}
         {isError && (
           <span className="text-red-600 underline">{error.message}</span>

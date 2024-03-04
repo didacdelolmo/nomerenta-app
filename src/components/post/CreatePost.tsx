@@ -36,7 +36,6 @@ export default function CreatePost() {
         <h2 className="text-4xl m-0 font-bold">No me renta</h2>
         <input
           onChange={handleTitle}
-          onFocus={startTimer}
           value={title}
           placeholder="salir de fiesta"
           className="box-border text-4xl flex-1 min-w-0 w-full text-center md:text-start md:px-2 border border-gray-600 rounded-lg"

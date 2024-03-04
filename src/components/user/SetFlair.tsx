@@ -20,7 +20,7 @@ export default function SetFlair({ user }: { user: User }) {
           <input
             onChange={handleFlair}
             value={flair}
-            className="italic w-full border border-gray-600 border-r-0 rounded-l-md"
+            className="px-1 italic w-full border border-gray-600 border-r-0 rounded-l-md"
             type="text"
           />
           <button

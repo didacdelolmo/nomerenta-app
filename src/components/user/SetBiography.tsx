@@ -20,7 +20,7 @@ export default function SetBiography({ user }: { user: User }) {
           <textarea
             onChange={handleBiography}
             value={biography}
-            className="italic w-full border border-gray-600 border-r-0 rounded-l-md"
+            className="px-1 italic w-full border border-gray-600 border-r-0 rounded-l-md"
             rows={3}
           ></textarea>
           <button

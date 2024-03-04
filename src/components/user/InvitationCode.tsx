@@ -9,8 +9,8 @@ export default function InvitationCode({
   const { code, redeemed } = invitation;
 
   const { hasCopied, handleShare } = useShare({
-    title: 'NO ME RENTA',
-    text: 'Te paso mi código de invitación de NOMERENTA.com',
+    title: 'NOMERENTA.com',
+    text: '¡Únete conmigo a NO ME RENTA y vamos a echarnos unas risas 🤣!',
     url: `https://nomerenta.com?code=${code}`,
   });
 

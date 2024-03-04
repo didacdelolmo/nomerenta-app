@@ -67,8 +67,9 @@ export default function Tiptap({
       <textarea
         onChange={(e) => {
           handleContent(e.target.value);
+          // startTimer();
         }}
-        onFocus={startTimer}
+        onKeyDown={startTimer}
         value={content}
         placeholder={placeholder}
         className="rounded-md border border-gray-600 p-2 text-lg h-32"
@@ -79,7 +80,7 @@ export default function Tiptap({
   return (
     <div className="flex flex-col gap-2">
       <Toolbar editor={editor} />
-      <EditorContent editor={editor} onFocus={startTimer} />
+      <EditorContent editor={editor} onKeyDown={startTimer} />
     </div>
   );
 }

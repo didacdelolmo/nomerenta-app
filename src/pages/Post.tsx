@@ -14,15 +14,15 @@ export default function Post() {
   } = useGetPostByIdQuery({ postId });
 
   return (
-    <div className="flex flex-col md:grid grid-cols-4 grid-flow-row divide-x divide-gray-600">
-      <div className="col-span-3">
+    <div className="flex flex-col md:grid grid-cols-4 grid-flow-row gap-2">
+      <div className="col-span-3 outline outline-1 outline-gray-600 h-fit">
         {isPending && <span>Cargando...</span>}
         {isError && (
           <span className="text-red-600 underline">{error.message}</span>
         )}
         {isSuccess && <PostContent post={response.data} />}
       </div>
-      <div className="hidden md:grid col-span-1 pl-2">
+      <div className="hidden md:grid col-span-1">
         <PopularPosts />
       </div>
     </div>

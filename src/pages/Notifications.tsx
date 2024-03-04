@@ -4,7 +4,7 @@ import PopularPosts from "../components/post/PopularPosts";
 
 export default function Notifications() {
   return (
-    <div className="flex flex-col lg:grid grid-cols-4 grid-flow-row divide-x divide-gray-600">
+    <div className="flex flex-col lg:grid grid-cols-4 grid-flow-row">
       <div className="hidden lg:grid col-span-1 mr-2">
         <PopularPosts />
       </div>

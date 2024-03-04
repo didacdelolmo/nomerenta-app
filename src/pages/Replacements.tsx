@@ -29,7 +29,7 @@ export default function Replacements() {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center gap-5 h-full">
+    <div className="flex flex-col justify-center items-center gap-5 my-5">
       <div className="flex flex-col items-center">
         <h2 className="text-4xl font-bold">Editar reemplazos</h2>
         {isSuccess && (
